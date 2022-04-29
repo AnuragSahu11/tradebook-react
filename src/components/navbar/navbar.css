@@ -87,13 +87,16 @@ nav {
     flex-direction: row;
     align-items: center;
   }
-  @media only screen and (max-width: 768px) {
-  }
 
   .nav-hamburger {
     font-size: var(--is-4);
     cursor: pointer;
     margin-left: auto;
+    display: block;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .nav-end button {
     display: block;
   }
 }

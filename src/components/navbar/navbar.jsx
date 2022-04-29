@@ -38,14 +38,8 @@ const Navbar = () => {
             <button className="dark-mode btn-icon nav-icons m-x-1">
               <i className="fas fa-moon" />
             </button>
-            <a href="pages/sign-up.html">
-              <button className="btn-secondary nav-btn btn-small">
-                Sign up
-              </button>
-            </a>
-            <a href="pages/login.html">
-              <button className="btn-primary nav-btn btn-small">Log in</button>
-            </a>
+            <button className="btn-secondary nav-btn btn-small">Sign up</button>
+            <button className="btn-primary nav-btn btn-small">Log in</button>
           </div>
         </div>
       </nav>
@@ -59,13 +53,13 @@ const Navbar = () => {
           Home
         </Link>
         <Link className="is-3 m-up-2 is-dark" to="/videoListing">
-          Explore
+          Dashboard
         </Link>
         <Link className="is-3 m-up-2 is-dark" to="/videoListing/playlist">
-          Playlists
+          Search
         </Link>
         <Link className="is-3 m-up-2 is-dark" to="/videoListing/watchLater">
-          Watch Later
+          Portfolio
         </Link>
         <Link className="is-3 m-up-2 is-dark" to="/videoListing/history">
           History

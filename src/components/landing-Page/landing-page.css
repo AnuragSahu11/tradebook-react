@@ -1,10 +1,12 @@
 .hero {
   margin-top: 10vh;
+  height: min-content;
 }
 .hero-div {
-  height: 40vh;
+  /* height: 40vh; */
 }
-
+.hero-image {
+}
 span {
   font-size: 7rem;
 }

@@ -1,9 +1,8 @@
 @import url("https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css");
+
 .App {
   display: flex;
   flex-direction: column;
   height: 100vh;
-}
-footer {
-  margin-top: auto;
+  z-index: 0;
 }
