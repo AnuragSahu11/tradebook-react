@@ -1,0 +1,14 @@
+
+.hero-div {
+  height: 40vh;
+}
+
+span {
+  font-size: 7rem;
+}
+.hero-image-img {
+  width: 90%;
+}
+.hero-text {
+  font-family: var(--font-two);
+}
