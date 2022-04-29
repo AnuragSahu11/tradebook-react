@@ -11,7 +11,7 @@ nav {
 .mobile-navbar {
   z-index: 6;
   position: fixed;
-  background-color: white;
+  background-color: var(--white);
   width: 45vw;
   height: 100vh;
   transform: translateX(-115vw);
@@ -28,12 +28,12 @@ nav {
 }
 
 .search-results {
-  background-color: white;
+  background-color: var(--white);
   position: absolute;
   width: 100%;
 }
 .search-para {
-  background-color: white;
+  background-color: var(--white);
   width: 100%;
 }
 .nav-menu {
@@ -43,7 +43,7 @@ nav {
   margin-top: 100px;
 }
 .nav-mobile-search {
-  background-color: white;
+  background-color: var(--white);
   width: 100%;
   z-index: 1;
   position: fixed;
