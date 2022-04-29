@@ -1,4 +1,6 @@
-
+.hero {
+  margin-top: 10vh;
+}
 .hero-div {
   height: 40vh;
 }
