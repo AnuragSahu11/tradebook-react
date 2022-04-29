@@ -21,12 +21,9 @@ const LandingPage = () => {
               Manage your Portfolio the Lucid way
             </div>
           </div>
-          <a href="" className="center-x"></a>
-          <a href="pages/searchpage.html">
-            <button className="m-up-3 btn-primary btn-large shadow">
-              Get started
-            </button>
-          </a>
+          <button className="m-up-3 btn-primary btn-large shadow">
+            Get started
+          </button>
         </div>
         <div className="hero-image">
           <img

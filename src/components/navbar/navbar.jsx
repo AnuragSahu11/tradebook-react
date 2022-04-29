@@ -15,24 +15,20 @@ const Navbar = () => {
     <div className="nav">
       <nav className="navbar li-shadow">
         <div className="nav-brand">
-          <a href="" className="logo-a">
+          <span href="" className="logo-a">
             <img className="logo-s" src="/images/logo.png" alt="" />
-          </a>
+          </span>
         </div>
         <div onClick={hamburgerClick} className="nav-hamburger">
           <i className="fas fa-bars" />
         </div>
         <div className="nav-menu">
           <div className="nav-start">
-            <a href="pages/dashboard.html" className="nav-item link">
-              Dashboard
-            </a>
-            <a href="pages/portfolio.html" className="nav-item link">
-              Portfolio
-            </a>
-            <a href="pages/searchpage.html" className="nav-item link">
+            <span className="nav-item link">Dashboard</span>
+            <span className="nav-item link">Portfolio</span>
+            <span href="pages/searchpage.html" className="nav-item link">
               Search
-            </a>
+            </span>
           </div>
           <div className="nav-end">
             <button className="dark-mode btn-icon nav-icons m-x-1">
