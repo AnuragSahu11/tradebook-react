@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import "./navbar.css";
 
 const Navbar = () => {
-  const navigate = useNavigate();
   const [showNav, setShowNav] = useState(" ");
   const hamburgerClick = () => {
     if (showNav === " ") setShowNav("mobile-navbar-view");
