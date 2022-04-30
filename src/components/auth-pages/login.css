@@ -1,0 +1,8 @@
+.login,
+.signup {
+  width: fit-content;
+}
+/* util */
+.b-radius {
+  border-radius: var(--border-radius-l);
+}
