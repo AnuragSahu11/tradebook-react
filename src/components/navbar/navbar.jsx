@@ -1,15 +1,14 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./navbar.css";
 
 const Navbar = () => {
-  const [showNav, setShowNav] = useState(" ");
+  const navigate = useNavigate();
+  const [showNav, setShowNav] = useState(false);
   const hamburgerClick = () => {
-    if (showNav === " ") setShowNav("mobile-navbar-view");
-    if (showNav === "mobile-navbar-view") {
-      setShowNav(" ");
-    }
+    setShowNav((prevState) => !prevState);
   };
+
   return (
     <div className="nav">
       <nav className="navbar li-shadow">
@@ -34,12 +33,21 @@ const Navbar = () => {
               <i className="fas fa-moon" />
             </button>
             <button className="btn-secondary nav-btn btn-small">Sign up</button>
-            <button className="btn-primary nav-btn btn-small">Log in</button>
+            <button
+              onClick={() => navigate("/login")}
+              className="btn-primary nav-btn btn-small"
+            >
+              Log in
+            </button>
           </div>
         </div>
       </nav>
 
-      <div className={`mobile-navbar ${showNav} text-center flex-c-w`}>
+      <div
+        className={`mobile-navbar ${
+          showNav ? "mobile-navbar-view" : null
+        } text-center flex-c-w`}
+      >
         <div className="text-center m-up-3 center-x">
           <img className="logo-s" src="/images/logo.png" alt="" />
           <p className="is-4 is-blue">Tradebook</p>
