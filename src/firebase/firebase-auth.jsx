@@ -3,6 +3,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "./firebase";
+import { createUser } from "./firestore";
 
 const login = async (email, password) => {
   try {
@@ -15,7 +16,7 @@ const login = async (email, password) => {
   }
 };
 
-const signUp = async (email, password) => {
+const signUp = async (email, password, firstName, lastName) => {
   try {
     const response = await createUserWithEmailAndPassword(
       auth,
@@ -23,6 +24,7 @@ const signUp = async (email, password) => {
       password
     );
     console.log(response);
+    createUser(firstName, lastName, email, response.user.uid);
   } catch (err) {
     const errCode = err.code;
     const errorMessage = err.message;

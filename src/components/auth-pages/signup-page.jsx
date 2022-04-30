@@ -1,12 +1,20 @@
 import { useState } from "react";
 import { signUp } from "../../firebase/firebase-auth";
+import { useNavigate } from "react-router-dom";
 import "./login.css";
 
 const SignupPage = () => {
-  const [inputField, setInputField] = useState({ email: "", password: "" });
+  const navigate = useNavigate();
+  const [inputField, setInputField] = useState({
+    email: "",
+    password: "",
+    first: "",
+    last: "",
+  });
+  const { email, password, first, last } = inputField;
 
-  const signUpClick = () => {
-    signUp(inputField.email, inputField.password);
+  const signUpClick = async () => {
+    await signUp(email, password, first, last);
   };
 
   return (
@@ -16,8 +24,23 @@ const SignupPage = () => {
           <div className="title">Sign Up</div>
         </div>
         <div className="form-div m-up-1">
-          <p className="form-label">Full Name</p>
+          <p className="form-label">First Name</p>
           <input
+            onChange={(e) =>
+              setInputField({ ...inputField, first: e.target.value })
+            }
+            value={inputField.first}
+            type="text"
+            className="form-input input-focused"
+            placeholder="enter your full name"
+            required=""
+          />
+          <p className="form-label">Last Name</p>
+          <input
+            onChange={(e) =>
+              setInputField({ ...inputField, last: e.target.value })
+            }
+            value={inputField.last}
             type="text"
             className="form-input input-focused"
             placeholder="enter your full name"
@@ -50,11 +73,14 @@ const SignupPage = () => {
           <input type="checkbox" className="" />
           Accept all terms and conditions
         </label>
-        <div onClick={signUpClick} className="btn-vertical m-up-3 center-text">
-          <button className="btn-primary m-dw-1 btn-small">
+        <div className="btn-vertical m-up-3 center-text">
+          <button
+            onClick={signUpClick}
+            className="btn-primary m-dw-1 btn-small"
+          >
             Create new Account
           </button>
-          <span href="" className="is-2 link">
+          <span onClick={() => navigate("/login")} className="is-2 link">
             Already have an account
           </span>
         </div>
