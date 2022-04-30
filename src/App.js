@@ -1,6 +1,12 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import { LandingPage, Footer, Navbar, LoginPage } from "./components/index";
+import {
+  LandingPage,
+  Footer,
+  Navbar,
+  LoginPage,
+  SignupPage,
+} from "./components/index";
 
 function App() {
   return (
@@ -8,6 +14,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
         <Route path="/" element={<LandingPage />} />
       </Routes>
       <Footer />

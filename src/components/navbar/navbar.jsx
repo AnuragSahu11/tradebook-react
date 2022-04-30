@@ -32,7 +32,12 @@ const Navbar = () => {
             <button className="dark-mode btn-icon nav-icons m-x-1">
               <i className="fas fa-moon" />
             </button>
-            <button className="btn-secondary nav-btn btn-small">Sign up</button>
+            <button
+              onClick={() => navigate("/signup")}
+              className="btn-secondary nav-btn btn-small"
+            >
+              Sign up
+            </button>
             <button
               onClick={() => navigate("/login")}
               className="btn-primary nav-btn btn-small"
