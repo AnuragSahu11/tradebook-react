@@ -12,7 +12,6 @@ const SignupPage = () => {
     last: "",
   });
   const { email, password, first, last } = inputField;
-
   const signUpClick = async () => {
     await signUp(email, password, first, last);
   };

@@ -1,15 +1,19 @@
 import { useState } from "react";
+import { useAuth } from "../../context/auth-context";
 import { login } from "../../firebase/firebase-auth";
 import "./login.css";
 
 const LoginPage = () => {
   const [inputField, setInputField] = useState({ email: "", password: "" });
+  const { dispatch } = useAuth();
+
   const demoLoginClick = async () => {
     setInputField({ email: "anurag@gmail.com", password: "123456" });
-    login("anurag@gmail.com", "123456");
+    login("anurag@gmail.com", "123456", dispatch);
   };
+
   const loginClick = () => {
-    login(inputField.email, inputField.password);
+    login(inputField.email, inputField.password, dispatch);
   };
 
   return (

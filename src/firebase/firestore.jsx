@@ -26,21 +26,24 @@ const createUser = async (firstName, lastName, email, userID) => {
   }
 };
 
-const getUserData = async (userID) => {
+const getUserData = async (userID, dispatch) => {
   try {
     const userData = {};
     const querySnapshot = await getDocs(collection(db, userID));
     querySnapshot.forEach((doc) => {
       userData[doc.id] = doc.data();
     });
-    console.log(userData);
+    dispatch({ type: "SAVE_USER_DATA", payload: userData });
   } catch (err) {
     console.error("Error during fetching data: ", err);
   }
 };
 
-const updateOrder = async (userID, orderDetails) => {
-  const orderID = short.generate();
+const updateOrder = async (
+  userID,
+  orderDetails,
+  orderID = short.generate()
+) => {
   try {
     await updateDoc(doc(db, userID, "orders"), {
       [orderID]: orderDetails,

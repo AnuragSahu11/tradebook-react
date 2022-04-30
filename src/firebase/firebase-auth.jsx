@@ -3,16 +3,17 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "./firebase";
-import { createUser } from "./firestore";
+import { createUser, getUserData } from "./firestore";
 
-const login = async (email, password) => {
+const login = async (email, password, dispatch) => {
   try {
-    const response = await signInWithEmailAndPassword(auth, email, password);
-    console.log(response.user.uid);
+    const { user } = await signInWithEmailAndPassword(auth, email, password);
+    dispatch({ type: "SAVE_TOKEN", payload: user.uid });
+    getUserData(user.uid, dispatch);
   } catch (err) {
     const errCode = err.code;
     const errorMessage = err.message;
-    console.log(errCode, errorMessage);
+    console.error(errCode, errorMessage);
   }
 };
 
@@ -23,12 +24,11 @@ const signUp = async (email, password, firstName, lastName) => {
       email,
       password
     );
-    console.log(response);
     createUser(firstName, lastName, email, response.user.uid);
   } catch (err) {
     const errCode = err.code;
     const errorMessage = err.message;
-    console.log(errCode, errorMessage);
+    console.error(errCode, errorMessage);
   }
 };
 
