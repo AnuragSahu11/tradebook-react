@@ -1,4 +1,10 @@
+import { useState } from "react";
+import { AddToPortfolioModal } from "../modals/add-to-portfolio-modal";
+
 const SearchResult = ({ searchResult }) => {
+  const [showModal, setShowModal] = useState(false);
+  const toggleModal = () => setShowModal((prevState) => !prevState);
+
   const result = searchResult
     .slice(0, 10)
     .map((coinData) => (
@@ -6,12 +12,18 @@ const SearchResult = ({ searchResult }) => {
         symbol={coinData.symbol}
         name={coinData.name}
         image={coinData.large}
+        toggleModal={toggleModal}
       />
     ));
-  return <div className="result p-x-2 m-up-6">{result}</div>;
+  return (
+    <>
+      {showModal && <AddToPortfolioModal toggleModal={toggleModal} />}
+      <div className="result p-x-2 m-up-6">{result}</div>
+    </>
+  );
 };
 
-const SearchResultComponent = ({ symbol, name, image }) => {
+const SearchResultComponent = ({ symbol, name, image, toggleModal }) => {
   return (
     <div className="result-data p-x-3 elevated center-text p-y-3 li-shadow">
       <div className="result-data-div">
@@ -29,7 +41,12 @@ const SearchResultComponent = ({ symbol, name, image }) => {
         </div>
       </div>
 
-      <button className="btn-primary width-100 btn-small m-up-2">+ Add</button>
+      <button
+        onClick={toggleModal}
+        className="btn-primary width-100 btn-small m-up-2"
+      >
+        + Add
+      </button>
     </div>
   );
 };
