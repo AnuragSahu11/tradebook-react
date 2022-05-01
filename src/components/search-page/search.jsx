@@ -5,7 +5,7 @@ const Search = ({ setInputText }) => {
     <div className="search center-x center-text center-y">
       <div className="form width-80 center-x">
         <div className="form-div center-text">
-          <p className="form-label is-4">Search indices</p>
+          <p className="form-label is-4">Search Crypto</p>
           <input
             onChange={(e) => setInputText(e.target.value)}
             type="text"
