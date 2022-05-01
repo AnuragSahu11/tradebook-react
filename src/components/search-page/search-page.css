@@ -1,0 +1,22 @@
+.form-input {
+  border-radius: var(--border-radius-m);
+  padding: var(--s);
+  font-size: var(--is-4);
+  border: solid var(--grey);
+}
+.text {
+  margin-bottom: 0px;
+  color: var(--font-dark);
+  padding-top: 0px;
+}
+.result {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-evenly;
+}
+.result-data {
+  width: 20%;
+  min-width: fit-content;
+  border-radius: 25px;
+}
