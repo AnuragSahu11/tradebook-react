@@ -20,3 +20,6 @@
   min-width: fit-content;
   border-radius: 25px;
 }
+.result-thumbnail {
+  width: 50px;
+}

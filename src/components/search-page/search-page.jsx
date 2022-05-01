@@ -14,7 +14,7 @@ const SearchPage = () => {
     if (inputText.trim()) {
       timeout.current = setTimeout(
         () => searchCoins(inputText, setSearchResult),
-        1000
+        700
       );
     }
   };
@@ -27,9 +27,7 @@ const SearchPage = () => {
     <main className="m-up-5">
       <div className="title center-text is-5 m-up-6">Add to portfolio</div>
       <Search setInputText={setInputText} />
-      <div className="result p-x-2 m-up-6">
-        <SearchResult searchResult={searchResult} />
-      </div>
+      <SearchResult searchResult={searchResult} />
     </main>
   );
 };
