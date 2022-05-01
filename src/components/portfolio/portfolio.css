@@ -1,0 +1,46 @@
+.grid-portfolio {
+  position: relative;
+}
+.filter-menu {
+  height: 100vh;
+  left: 0;
+  top: 0;
+  position: sticky;
+  gap: 25px;
+}
+.trade-current {
+  width: 100%;
+  margin-bottom: 0px;
+}
+.text {
+  margin-top: 0px;
+}
+.trades-button button {
+  width: 100%;
+}
+.portfolio-trades {
+  width: fit-content;
+}
+.trades {
+  border-radius: var(--border-radius-l);
+}
+.trades:nth-child(n + 2) {
+  margin-top: 40px;
+}
+
+.trade-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .filter-menu {
+    position: relative;
+    height: min-content;
+  }
+  .filter-menu > :nth-child(n + 2) {
+    display: none;
+  }
+}

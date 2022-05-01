@@ -4,3 +4,4 @@ export { Footer } from "./footer/footer";
 export { LoginPage } from "./auth-pages/login-page";
 export { SignupPage } from "./auth-pages/signup-page";
 export { SearchPage } from "./search-page/search-page";
+export { PortfolioPage } from "./portfolio/portfolio";
