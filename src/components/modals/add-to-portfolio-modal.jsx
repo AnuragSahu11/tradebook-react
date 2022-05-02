@@ -3,26 +3,33 @@ import { updateOrder } from "../../firebase/firestore";
 import { getCoinData } from "../../utility/api-methods";
 import "./modal.css";
 
-const AddToPortfolioModal = ({ toggleModal, coinId }) => {
-  const [coinPrice, setCoinPrice] = useState("");
+const AddToPortfolioModal = ({ toggleModal, coinData }) => {
+  const [currentPrice, setcurrentPrice] = useState("");
+  const { name, symbol, image, id } = coinData;
   const [inputFields, setInputFields] = useState({
-    price: "",
+    userPrice: "",
     qty: "",
     amount: "",
   });
 
-  const { price, qty, amount } = inputFields;
+  const { userPrice, qty, amount } = inputFields;
 
   useEffect(() => {
-    getCoinData(coinId, setCoinPrice);
-  }, [coinId]);
+    getCoinData(id, setcurrentPrice);
+  }, [id]);
 
   const addClick = () => {
-    if ((price || coinPrice) && (amount || qty)) {
+    if ((userPrice || currentPrice) && (amount || qty)) {
+      let price = userPrice || currentPrice;
+      let quantity = qty || (amount / currentPrice).toFixed(2);
+
       updateOrder("vpLtiGgM54Xc4ACV4R8xTvg4rTj2", {
-        name: "cardano",
-        price: price || coinPrice,
-        amount: amount,
+        id: id,
+        name: name,
+        price: price,
+        quantity: quantity,
+        symbol: symbol,
+        image: image,
       });
     }
   };
@@ -44,10 +51,10 @@ const AddToPortfolioModal = ({ toggleModal, coinId }) => {
         </button>
         <i className="modal-icon is-blue far fa-address-card" />
         <div className="textbox">
-          <div className="title text-center">Add to portfolio {coinId} </div>
+          <div className="title text-center">Add to portfolio {name} </div>
           <div className="m-up-2 center-x form-div">
             <p className="form-label">Current Price</p>
-            <p className="current-price is-4">{coinPrice}</p>
+            <p className="current-price is-4">{currentPrice}</p>
           </div>
           <div className="m-up-2 center-x form-div">
             <p className="form-label">Price</p>

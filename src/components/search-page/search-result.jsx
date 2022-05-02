@@ -4,25 +4,25 @@ import { AddToPortfolioModal } from "../modals/add-to-portfolio-modal";
 const SearchResult = ({ searchResult }) => {
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => setShowModal((prevState) => !prevState);
-  const [coinId, setCoinId] = useState("");
+  const [coinData, setCoinData] = useState({});
 
   const result = searchResult
     .slice(0, 10)
-    .map((coinData) => (
+    .map((coin) => (
       <SearchResultComponent
-        key={coinData.id}
-        symbol={coinData.symbol}
-        name={coinData.name}
-        image={coinData.large}
-        id={coinData.id}
+        key={coin.id}
+        symbol={coin.symbol}
+        name={coin.name}
+        image={coin.large}
+        id={coin.id}
         toggleModal={toggleModal}
-        setCoinId={setCoinId}
+        setCoinData={setCoinData}
       />
     ));
   return (
     <>
       {showModal && (
-        <AddToPortfolioModal coinId={coinId} toggleModal={toggleModal} />
+        <AddToPortfolioModal coinData={coinData} toggleModal={toggleModal} />
       )}
       <div className="result p-x-2 m-up-6">{result}</div>
     </>
@@ -34,12 +34,12 @@ const SearchResultComponent = ({
   name,
   image,
   toggleModal,
-  setCoinId,
+  setCoinData,
   id,
 }) => {
   const addClick = () => {
     toggleModal();
-    setCoinId(id);
+    setCoinData({ name: name, symbol: symbol, image: image, id: id });
   };
   return (
     <div className="result-data p-x-3 elevated center-text p-y-3 li-shadow">

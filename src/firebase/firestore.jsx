@@ -5,6 +5,7 @@ import {
   updateDoc,
   deleteField,
   writeBatch,
+  serverTimestamp,
 } from "firebase/firestore";
 import { db } from "./firebase";
 const short = require("short-uuid");
@@ -46,7 +47,7 @@ const updateOrder = async (
 ) => {
   try {
     await updateDoc(doc(db, userID, "orders"), {
-      [orderID]: orderDetails,
+      [orderID]: { ...orderDetails, timeStamp: serverTimestamp() },
     });
   } catch (err) {
     console.error("Error during adding/updating data: ", err);
