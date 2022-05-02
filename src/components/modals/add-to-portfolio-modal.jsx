@@ -1,6 +1,12 @@
+import { useEffect } from "react";
+import { getCoinData } from "../../utility/api-methods";
 import "./modal.css";
 
-const AddToPortfolioModal = ({ toggleModal }) => {
+const AddToPortfolioModal = ({ toggleModal, coinId }) => {
+  useEffect(() => {
+    getCoinData(coinId);
+  }, []);
+
   return (
     <div className="modal-wrapper">
       <div className="modal p-x-4 center-x elevated m-up-6 shadow">
@@ -12,7 +18,7 @@ const AddToPortfolioModal = ({ toggleModal }) => {
         </button>
         <i className="modal-icon is-blue far fa-address-card" />
         <div className="textbox">
-          <div className="title text-center">Add to portfolio</div>
+          <div className="title text-center">Add to portfolio {coinId} </div>
           <div className="m-up-2 center-x form-div">
             <p className="form-label">Price</p>
             <input
