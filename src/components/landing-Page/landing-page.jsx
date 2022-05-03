@@ -18,7 +18,7 @@ const LandingPage = () => {
               </span>
             </div>
             <div className="subtitle is-3">
-              Manage your Portfolio the Lucid way
+              Manage your Crypto Portfolio the Lucid way
             </div>
           </div>
           <button className="m-up-3 btn-primary btn-large shadow">

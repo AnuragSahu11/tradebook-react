@@ -24,7 +24,7 @@ const Navbar = () => {
           <div className="nav-start">
             <span className="nav-item link">Dashboard</span>
             <span className="nav-item link">Portfolio</span>
-            <span href="pages/searchpage.html" className="nav-item link">
+            <span onClick={() => navigate("/search")} className="nav-item link">
               Search
             </span>
           </div>
