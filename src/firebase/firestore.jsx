@@ -20,7 +20,9 @@ const createUser = async (firstName, lastName, email, userID) => {
       email: email,
     });
     const orderRef = doc(db, userID, "orders");
+    const closedRef = doc(db, userID, "closed");
     batch.set(orderRef, {});
+    batch.set(closedRef, {});
     await batch.commit();
   } catch (err) {
     console.error("Error adding document: ", err);

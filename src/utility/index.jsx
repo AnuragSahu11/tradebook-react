@@ -1,2 +1,2 @@
 export { searchCoins } from "./api-methods";
-export { objectToArray } from "./objectToArray";
+export { objectToArray, coinIdList } from "./objectToArray";

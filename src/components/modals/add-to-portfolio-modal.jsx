@@ -60,7 +60,7 @@ const AddToPortfolioModal = ({ toggleModal, coinData }) => {
             <p className="form-label">Price</p>
             <input
               onChange={(e) => {
-                setInputFields({ ...inputFields, price: e.target.value });
+                setInputFields({ ...inputFields, userPrice: e.target.value });
               }}
               type="text"
               className="form-input input-focused"

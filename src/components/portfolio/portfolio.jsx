@@ -4,7 +4,7 @@ import "./portfolio.css";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/auth-context";
 import { getUserData } from "../../firebase/firestore";
-import { objectToArray } from "../../utility";
+import { coinIdList, objectToArray } from "../../utility";
 import { getCoinPrices } from "../../utility/api-methods";
 
 const PortfolioPage = () => {
@@ -19,10 +19,12 @@ const PortfolioPage = () => {
 
   useEffect(() => {
     (async () => {
-      let { data } = await getCoinPrices("bitcoin,cardano");
+      let { data } = await getCoinPrices(
+        coinIdList(objectToArray(userDataState.orders))
+      );
       setCoinPriceData(data);
     })();
-  }, []);
+  }, [userDataState]);
 
   return (
     <main>
@@ -35,7 +37,8 @@ const PortfolioPage = () => {
               {objectToArray(userDataState.orders).map((order) => (
                 <Trades
                   key={order.key}
-                  currentPrice={coinPriceData[order.id].usd || "loading"}
+                  orderId={order.key}
+                  currentPrice={coinPriceData[order.id]?.usd || "loading"}
                   name={order.name}
                   symbol={order.symbol}
                   price={order.price}

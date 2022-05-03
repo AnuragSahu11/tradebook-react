@@ -1,9 +1,41 @@
-const Trades = ({ name, symbol, quantity, price, image, currentPrice }) => {
+import { useAuth } from "../../context/auth-context";
+import { deleteOrder, getUserData } from "../../firebase/firestore";
+
+const Trades = ({
+  name,
+  symbol,
+  quantity,
+  price,
+  image,
+  currentPrice,
+  orderId,
+}) => {
+  const { dispatch } = useAuth();
+
+  const profitAndLoss = (boughtPrice, currentPrice, quantity) => {
+    return ((boughtPrice - currentPrice) * quantity).toFixed(2);
+  };
+
+  const precentage = (boughtPrice, currentPrice) => {
+    return ((boughtPrice - currentPrice) / boughtPrice).toFixed(2) * 100;
+  };
+
+  const closeTradeClick = () => {};
+
+  const deleteTradeClick = () => {
+    deleteOrder("vpLtiGgM54Xc4ACV4R8xTvg4rTj2", orderId);
+    getUserData("vpLtiGgM54Xc4ACV4R8xTvg4rTj2", dispatch);
+  };
+
   return (
     <div className="trades p-y-3 elevated li-shadow space-evenly align-c flex-r-w">
       <div className="trade-current m-dw-0">
         <div className="text is-6 text-center bold is-dark">
-          5000 <span className="is-4 is-green"> 10%</span>
+          {profitAndLoss(price, currentPrice, quantity)}{" "}
+          <span className="is-4 is-green">
+            {" "}
+            {precentage(price, currentPrice)}%{" "}
+          </span>
         </div>
       </div>
       <div className="trades-name">
@@ -36,8 +68,16 @@ const Trades = ({ name, symbol, quantity, price, image, currentPrice }) => {
         </div>
       </div>
       <div className="trades-button flex-col">
-        <button className="btn-primary btn-small shadow has-red">Delete</button>
-        <button className="btn-primary btn-small shadow has-green m-up-2">
+        <button
+          onClick={deleteTradeClick}
+          className="btn-primary btn-small shadow has-red"
+        >
+          Delete
+        </button>
+        <button
+          onClick={closeTradeClick}
+          className="btn-primary btn-small shadow has-green m-up-2"
+        >
           Close Trade
         </button>
       </div>
