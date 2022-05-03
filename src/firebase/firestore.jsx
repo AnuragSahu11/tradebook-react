@@ -49,7 +49,17 @@ const updateOrder = async (
 ) => {
   try {
     await updateDoc(doc(db, userID, "orders"), {
-      [orderID]: { ...orderDetails, timeStamp: serverTimestamp() },
+      [orderID]: { ...orderDetails, openTime: serverTimestamp() },
+    });
+  } catch (err) {
+    console.error("Error during adding/updating data: ", err);
+  }
+};
+
+const closeOrder = async (userID, orderDetails, orderID = short.generate()) => {
+  try {
+    await updateDoc(doc(db, userID, "closed"), {
+      [orderID]: { ...orderDetails, closeTime: serverTimestamp() },
     });
   } catch (err) {
     console.error("Error during adding/updating data: ", err);
@@ -64,4 +74,4 @@ const deleteOrder = async (userID, orderID) => {
   }
 };
 
-export { createUser, getUserData, updateOrder, deleteOrder };
+export { createUser, getUserData, updateOrder, deleteOrder, closeOrder };

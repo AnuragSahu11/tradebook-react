@@ -5,7 +5,7 @@ const AuthContext = createContext();
 const useAuth = () => useContext(AuthContext);
 
 const AuthProvider = ({ children }) => {
-  const initialUserData = { token: "", userData: {}, orders: {} };
+  const initialUserData = { token: "", userData: {}, orders: {}, filters: {} };
 
   const [userDataState, dispatch] = useReducer(authReducer, initialUserData);
 

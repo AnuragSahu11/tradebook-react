@@ -4,7 +4,7 @@ import "./portfolio.css";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/auth-context";
 import { getUserData } from "../../firebase/firestore";
-import { coinIdList, objectToArray } from "../../utility";
+import { coinIdList, applyFilters, objectToArray } from "../../utility";
 import { getCoinPrices } from "../../utility/api-methods";
 
 const PortfolioPage = () => {
@@ -34,16 +34,16 @@ const PortfolioPage = () => {
           <div className="portfolio-data p-dw-5 m-up-2 p-x-3">
             <div className="title is-6 light m-up-6 ">Portfolio</div>
             <div className="portfolio-trades center-x m-up-2">
-              {objectToArray(userDataState.orders).map((order) => (
+              {applyFilters(
+                objectToArray(userDataState.orders),
+                userDataState.filters,
+                coinPriceData
+              ).map((order) => (
                 <Trades
                   key={order.key}
+                  orderData={order}
                   orderId={order.key}
                   currentPrice={coinPriceData[order.id]?.usd || "loading"}
-                  name={order.name}
-                  symbol={order.symbol}
-                  price={order.price}
-                  quantity={order.quantity}
-                  image={order.image}
                 />
               ))}
             </div>

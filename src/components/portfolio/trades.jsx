@@ -1,42 +1,57 @@
 import { useAuth } from "../../context/auth-context";
-import { deleteOrder, getUserData } from "../../firebase/firestore";
+import { closeOrder, deleteOrder, getUserData } from "../../firebase/firestore";
 
-const Trades = ({
-  name,
-  symbol,
-  quantity,
-  price,
-  image,
-  currentPrice,
-  orderId,
-}) => {
+const Trades = ({ orderData, currentPrice, orderId }) => {
+  const { name, symbol, quantity, price, image } = orderData;
+
   const { dispatch } = useAuth();
 
   const profitAndLoss = (boughtPrice, currentPrice, quantity) => {
-    return ((boughtPrice - currentPrice) * quantity).toFixed(2);
+    const amount = ((currentPrice - boughtPrice) * quantity).toFixed(2);
+    const percentage = (
+      ((currentPrice - boughtPrice) / boughtPrice) *
+      100
+    ).toFixed(2);
+    return (
+      <div
+        className={`${
+          amount > 0 ? "is-green" : "is-red"
+        } current-price-text  is-6 text-center bold`}
+      >
+        {amount > 0 ? "+" + amount : amount}
+        <span
+          className={`${
+            amount > 0 ? "is-green" : "is-red"
+          } is-4 m-l-1 semibold`}
+        >
+          {percentage < 0 ? "↓" + percentage : "↑" + percentage}%
+        </span>
+      </div>
+    );
   };
 
-  const precentage = (boughtPrice, currentPrice) => {
-    return ((boughtPrice - currentPrice) / boughtPrice).toFixed(2) * 100;
+  const closeTradeClick = async () => {
+    await closeOrder(
+      "vpLtiGgM54Xc4ACV4R8xTvg4rTj2",
+      {
+        ...orderData,
+        closingPrice: currentPrice,
+      },
+      orderId
+    );
+    await deleteOrder("vpLtiGgM54Xc4ACV4R8xTvg4rTj2", orderId);
+    getUserData("vpLtiGgM54Xc4ACV4R8xTvg4rTj2", dispatch);
   };
 
-  const closeTradeClick = () => {};
-
-  const deleteTradeClick = () => {
-    deleteOrder("vpLtiGgM54Xc4ACV4R8xTvg4rTj2", orderId);
+  const deleteTradeClick = async () => {
+    await deleteOrder("vpLtiGgM54Xc4ACV4R8xTvg4rTj2", orderId);
     getUserData("vpLtiGgM54Xc4ACV4R8xTvg4rTj2", dispatch);
   };
 
   return (
     <div className="trades p-y-3 elevated li-shadow space-evenly align-c flex-r-w">
       <div className="trade-current m-dw-0">
-        <div className="text is-6 text-center bold is-dark">
-          {profitAndLoss(price, currentPrice, quantity)}{" "}
-          <span className="is-4 is-green">
-            {" "}
-            {precentage(price, currentPrice)}%{" "}
-          </span>
-        </div>
+        {profitAndLoss(price, currentPrice, quantity)}
       </div>
       <div className="trades-name">
         <div className="trade-data">
@@ -69,16 +84,16 @@ const Trades = ({
       </div>
       <div className="trades-button flex-col">
         <button
-          onClick={deleteTradeClick}
-          className="btn-primary btn-small shadow has-red"
-        >
-          Delete
-        </button>
-        <button
           onClick={closeTradeClick}
-          className="btn-primary btn-small shadow has-green m-up-2"
+          className="btn-primary btn-small shadow has-green"
         >
           Close Trade
+        </button>
+        <button
+          onClick={deleteTradeClick}
+          className="btn-primary btn-small shadow has-red m-up-2"
+        >
+          Delete
         </button>
       </div>
     </div>
