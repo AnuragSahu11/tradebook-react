@@ -22,7 +22,12 @@ const Navbar = () => {
         </div>
         <div className="nav-menu">
           <div className="nav-start">
-            <span className="nav-item link">Dashboard</span>
+            <span
+              onClick={() => navigate("/dashboard")}
+              className="nav-item link"
+            >
+              Dashboard
+            </span>
             <span
               onClick={() => navigate("/portfolio")}
               className="nav-item link"
