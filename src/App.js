@@ -9,6 +9,7 @@ import {
   SearchPage,
   PortfolioPage,
   Dashboard,
+  ErrorPage,
 } from "./components/index";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/search" element={<SearchPage />} />
         <Route path="/portfolio" element={<PortfolioPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/*" element={<ErrorPage />} />
       </Routes>
       <Footer />
     </div>

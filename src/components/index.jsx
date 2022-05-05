@@ -6,3 +6,4 @@ export { SignupPage } from "./auth-pages/signup-page";
 export { SearchPage } from "./search-page/search-page";
 export { PortfolioPage } from "./portfolio/portfolio";
 export { Dashboard } from "./dashboard/dashboard";
+export { ErrorPage } from "./error-page/error-page";
