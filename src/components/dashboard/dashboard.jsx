@@ -39,7 +39,7 @@ const Dashboard = () => {
   useEffect(() => {
     (async () => {
       let { data } = await getCoinPrices(
-        coinIdList(objectToArray(userDataState.orders))
+        coinIdList(objectToArray(userDataState?.orders))
       );
       setCoinPriceData(data);
     })();
