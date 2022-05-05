@@ -33,12 +33,13 @@ const Dashboard = () => {
     (async () => {
       await getUserData("vpLtiGgM54Xc4ACV4R8xTvg4rTj2", dispatch);
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     (async () => {
       let { data } = await getCoinPrices(
-        coinIdList(objectToArray(userDataState.orders))
+        coinIdList(objectToArray(userDataState?.orders))
       );
       setCoinPriceData(data);
     })();
