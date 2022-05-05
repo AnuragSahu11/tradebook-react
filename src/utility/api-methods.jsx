@@ -7,4 +7,12 @@ const searchCoins = async (searchText, setSearchResult) => {
   setSearchResult(data.coins);
 };
 
-export { searchCoins };
+const getCoinData = async (coinId, setCoinPrice) => {
+  const response = await axios.get(
+    `https://api.coingecko.com/api/v3/simple/price?ids=${coinId}&vs_currencies=usd
+    `
+  );
+  setCoinPrice(response.data[coinId].usd);
+};
+
+export { searchCoins, getCoinData };

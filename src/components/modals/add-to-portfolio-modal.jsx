@@ -1,9 +1,48 @@
+import { useEffect, useState } from "react";
+import { updateOrder } from "../../firebase/firestore";
+import { getCoinData } from "../../utility/api-methods";
 import "./modal.css";
 
-const AddToPortfolioModal = ({ toggleModal }) => {
+const AddToPortfolioModal = ({ toggleModal, coinData }) => {
+  const [currentPrice, setcurrentPrice] = useState("");
+  const { name, symbol, image, id } = coinData;
+  const [inputFields, setInputFields] = useState({
+    userPrice: "",
+    qty: "",
+    amount: "",
+  });
+
+  const { userPrice, qty, amount } = inputFields;
+
+  useEffect(() => {
+    getCoinData(id, setcurrentPrice);
+  }, [id]);
+
+  const addClick = () => {
+    if ((userPrice || currentPrice) && (amount || qty)) {
+      let price = userPrice || currentPrice;
+      let quantity = qty || (amount / currentPrice).toFixed(2);
+
+      updateOrder("vpLtiGgM54Xc4ACV4R8xTvg4rTj2", {
+        id: id,
+        name: name,
+        price: price,
+        quantity: quantity,
+        symbol: symbol,
+        image: image,
+      });
+    }
+  };
+
+  const outsideModalClick = (e) => toggleModal();
+  const insideModalClick = (e) => e.stopPropagation();
+
   return (
-    <div className="modal-wrapper">
-      <div className="modal p-x-4 center-x elevated m-up-6 shadow">
+    <div onClick={outsideModalClick} className="modal-wrapper">
+      <div
+        onClick={(e) => insideModalClick(e)}
+        className="modal p-x-4 center-x elevated m-up-6 shadow"
+      >
         <button
           onClick={toggleModal}
           className="card-cross btn-close is-medium"
@@ -12,10 +51,17 @@ const AddToPortfolioModal = ({ toggleModal }) => {
         </button>
         <i className="modal-icon is-blue far fa-address-card" />
         <div className="textbox">
-          <div className="title text-center">Add to portfolio</div>
+          <div className="title text-center">Add to portfolio {name} </div>
+          <div className="m-up-2 center-x form-div">
+            <p className="form-label">Current Price</p>
+            <p className="current-price is-4">{currentPrice}</p>
+          </div>
           <div className="m-up-2 center-x form-div">
             <p className="form-label">Price</p>
             <input
+              onChange={(e) => {
+                setInputFields({ ...inputFields, price: e.target.value });
+              }}
               type="text"
               className="form-input input-focused"
               placeholder="Indice price"
@@ -25,15 +71,23 @@ const AddToPortfolioModal = ({ toggleModal }) => {
           <div className="m-up-2 center-x form-div">
             <p className="form-label">Quantity</p>
             <input
+              onChange={(e) => {
+                setInputFields({ ...inputFields, qty: e.target.value });
+              }}
               type="text"
               className="form-input input-focused"
               placeholder="Number of units "
+              disabled={Boolean(amount)}
               required=""
             />
           </div>
           <div className="m-up-2 center-x form-div">
             <p className="form-label">Amount</p>
             <input
+              onChange={(e) => {
+                setInputFields({ ...inputFields, amount: e.target.value });
+              }}
+              disabled={Boolean(qty)}
               type="text"
               className="form-input input-focused"
               placeholder="Total amount"
@@ -42,7 +96,13 @@ const AddToPortfolioModal = ({ toggleModal }) => {
           </div>
         </div>
         <div className="btn-horizontal">
-          <button className="btn-primary width-100 has-green m-up-4 btn-small">
+          <button
+            onClick={(e) => {
+              addClick();
+              toggleModal();
+            }}
+            className="btn-primary width-100 has-green m-up-4 btn-small"
+          >
             Add
           </button>
         </div>

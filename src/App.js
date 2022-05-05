@@ -7,6 +7,7 @@ import {
   LoginPage,
   SignupPage,
   SearchPage,
+  PortfolioPage,
 } from "./components/index";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/search" element={<SearchPage />} />
+        <Route path="/portfolio" element={<PortfolioPage />} />
       </Routes>
       <Footer />
     </div>
