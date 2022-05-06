@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import { useAuth } from "../../context/auth-context";
 import { updateOrder } from "../../firebase/firestore";
 import { getCoinData } from "../../utility/api-methods";
 import "./modal.css";
 
 const AddToPortfolioModal = ({ toggleModal, coinData }) => {
+  const { userDataState } = useAuth();
+  const { token } = userDataState;
   const [currentPrice, setcurrentPrice] = useState("");
   const { name, symbol, image, id } = coinData;
   const [inputFields, setInputFields] = useState({
@@ -23,7 +26,7 @@ const AddToPortfolioModal = ({ toggleModal, coinData }) => {
       let price = userPrice || currentPrice;
       let quantity = qty || (amount / currentPrice).toFixed(2);
 
-      updateOrder("vpLtiGgM54Xc4ACV4R8xTvg4rTj2", {
+      updateOrder(token, {
         id: id,
         name: name,
         price: price,

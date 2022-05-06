@@ -1,19 +1,25 @@
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
 import { login } from "../../firebase/firebase-auth";
 import "./login.css";
 
 const LoginPage = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
   const [inputField, setInputField] = useState({ email: "", password: "" });
   const { dispatch } = useAuth();
 
   const demoLoginClick = async () => {
     setInputField({ email: "anurag@gmail.com", password: "123456" });
-    login("anurag@gmail.com", "123456", dispatch);
+    await login("anurag@gmail.com", "123456", dispatch);
+    navigate(from, { replace: true });
   };
 
-  const loginClick = () => {
-    login(inputField.email, inputField.password, dispatch);
+  const loginClick = async () => {
+    await login(inputField.email, inputField.password, dispatch);
+    navigate(from, { replace: true });
   };
 
   return (

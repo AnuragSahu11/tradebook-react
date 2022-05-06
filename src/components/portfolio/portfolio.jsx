@@ -10,10 +10,11 @@ import { getCoinPrices } from "../../utility/api-methods";
 const PortfolioPage = () => {
   const { userDataState, dispatch } = useAuth();
   const [coinPriceData, setCoinPriceData] = useState({});
+  const { token } = useAuth();
 
   useEffect(() => {
     (async () => {
-      await getUserData("vpLtiGgM54Xc4ACV4R8xTvg4rTj2", dispatch);
+      await getUserData(token, dispatch);
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
