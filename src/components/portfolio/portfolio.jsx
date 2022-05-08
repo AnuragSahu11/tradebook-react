@@ -10,7 +10,7 @@ import { getCoinPrices } from "../../utility/api-methods";
 const PortfolioPage = () => {
   const { userDataState, dispatch } = useAuth();
   const [coinPriceData, setCoinPriceData] = useState({});
-  const { token } = useAuth();
+  const { token } = userDataState;
 
   useEffect(() => {
     (async () => {
@@ -22,7 +22,7 @@ const PortfolioPage = () => {
   useEffect(() => {
     (async () => {
       let { data } = await getCoinPrices(
-        coinIdList(objectToArray(userDataState.orders))
+        coinIdList(objectToArray(userDataState?.orders))
       );
       setCoinPriceData(data);
     })();

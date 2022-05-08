@@ -77,10 +77,10 @@ const Dashboard = () => {
     ? accountValue(userDataState?.orders)
     : null;
   const closedOrderTotalInvest = userDataState
-    ? totalAmountInvest(userDataState.closed)
+    ? totalAmountInvest(userDataState?.closed)
     : null;
   const closedOrderTotalSold = userDataState
-    ? totalAmountSold(userDataState.closed)
+    ? totalAmountSold(userDataState?.closed)
     : null;
 
   return (
@@ -125,7 +125,7 @@ const Dashboard = () => {
             <div className="summary-div p-y-3 p-x-3 center-x width-100">
               <div className="subtitle m-up-1 semibold">Total Open trades</div>
               <div className="title is-5 semibold">
-                {objectToArray(userDataState.orders).length}
+                {objectToArray(userDataState?.orders).length}
               </div>
             </div>
           </div>
