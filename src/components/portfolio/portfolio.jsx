@@ -36,7 +36,7 @@ const PortfolioPage = () => {
             <div className="title is-6 light m-up-6 ">Portfolio</div>
             <div className="portfolio-trades center-x m-up-2">
               {applyFilters(
-                objectToArray(userDataState.orders),
+                objectToArray(userDataState?.orders),
                 userDataState.filters,
                 coinPriceData
               ).map((order) => (
