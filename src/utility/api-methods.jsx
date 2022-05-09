@@ -15,4 +15,9 @@ const getCoinData = async (coinId, setCoinPrice) => {
   setCoinPrice(response.data[coinId].usd);
 };
 
-export { searchCoins, getCoinData };
+const getCoinPrices = async (coindIdList) => {
+  return await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${coindIdList}&vs_currencies=usd
+  `);
+};
+
+export { searchCoins, getCoinData, getCoinPrices };

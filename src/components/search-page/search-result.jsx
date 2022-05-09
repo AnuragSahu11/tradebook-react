@@ -42,7 +42,7 @@ const SearchResultComponent = ({
     setCoinData({ name: name, symbol: symbol, image: image, id: id });
   };
   return (
-    <div className="result-data p-x-3 elevated center-text p-y-3 li-shadow">
+    <div className="result-data is-dark p-x-3 elevated center-text p-y-3 li-shadow">
       <div className="result-data-div">
         <div className="subtitle is-3 underline">Symbol</div>
         <div className="text light is-4 m-up-1">{symbol}</div>

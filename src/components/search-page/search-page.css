@@ -9,6 +9,10 @@
   color: var(--font-dark);
   padding-top: 0px;
 }
+.current-price-text {
+  margin-bottom: 0px;
+  padding-top: 0px;
+}
 .result {
   display: flex;
   flex-wrap: wrap;

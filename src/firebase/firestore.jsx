@@ -20,7 +20,9 @@ const createUser = async (firstName, lastName, email, userID) => {
       email: email,
     });
     const orderRef = doc(db, userID, "orders");
+    const closedRef = doc(db, userID, "closed");
     batch.set(orderRef, {});
+    batch.set(closedRef, {});
     await batch.commit();
   } catch (err) {
     console.error("Error adding document: ", err);
@@ -47,7 +49,17 @@ const updateOrder = async (
 ) => {
   try {
     await updateDoc(doc(db, userID, "orders"), {
-      [orderID]: { ...orderDetails, timeStamp: serverTimestamp() },
+      [orderID]: { ...orderDetails, openTime: serverTimestamp() },
+    });
+  } catch (err) {
+    console.error("Error during adding/updating data: ", err);
+  }
+};
+
+const closeOrder = async (userID, orderDetails, orderID = short.generate()) => {
+  try {
+    await updateDoc(doc(db, userID, "closed"), {
+      [orderID]: { ...orderDetails, closeTime: serverTimestamp() },
     });
   } catch (err) {
     console.error("Error during adding/updating data: ", err);
@@ -62,4 +74,4 @@ const deleteOrder = async (userID, orderID) => {
   }
 };
 
-export { createUser, getUserData, updateOrder, deleteOrder };
+export { createUser, getUserData, updateOrder, deleteOrder, closeOrder };
