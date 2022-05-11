@@ -7,6 +7,7 @@ const authReducer = (state, action) => {
         ...state,
         userData: action.payload.userData,
         orders: action.payload.orders,
+        closed: action.payload.closed,
       };
     case "SHOW_PROFIT":
       return {

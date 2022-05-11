@@ -8,6 +8,7 @@ import {
   SignupPage,
   SearchPage,
   PortfolioPage,
+  Dashboard,
 } from "./components/index";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/portfolio" element={<PortfolioPage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
       <Footer />
     </div>
