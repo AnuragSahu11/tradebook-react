@@ -1,12 +1,29 @@
+import { useState } from "react";
 import { useAuth } from "../../context/auth-context";
 
 const Filters = () => {
   const { userDataState, dispatch } = useAuth();
+  const [showFilters, setShowFilters] = useState(false);
+
+  const toggleShowFilters = () => {
+    setShowFilters((prevState) => !prevState);
+  };
+
   return (
-    <div className="filter-menu p-x-4 p-up-2 dk-shadow m-up-6 flex-c-w">
+    <div
+      className={`${
+        showFilters ? "filter-menu-mobile" : "filter-menu-hide"
+      } filter-menu p-x-4 p-up-2 dk-shadow m-up-6 flex-c-w`}
+    >
       <div className="filter-menu-responsive p-dw-1 flex-row align-center space-between">
         <span>
-          <div className="title is-dark">Filters</div>
+          <div className="title filter-title is-dark">Filters</div>
+          <div
+            onClick={toggleShowFilters}
+            className="title show-filter-title is-dark"
+          >
+            Show Filters
+          </div>
         </span>
         <span
           onClick={() => dispatch({ type: "CLEAR_FILTER" })}
