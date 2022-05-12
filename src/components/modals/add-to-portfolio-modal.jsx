@@ -61,6 +61,7 @@ const AddToPortfolioModal = ({ toggleModal, coinData }) => {
           </div>
           <div className="m-up-2 center-x form-div">
             <p className="form-label">Price</p>
+            <i className="bx bx-dollar-circle is-light"></i>
             <input
               onChange={(e) => {
                 setInputFields({ ...inputFields, userPrice: e.target.value });
@@ -73,6 +74,7 @@ const AddToPortfolioModal = ({ toggleModal, coinData }) => {
           </div>
           <div className="m-up-2 center-x form-div">
             <p className="form-label">Quantity</p>
+            <i className="bx bx-coin-stack is-light"></i>
             <input
               onChange={(e) => {
                 setInputFields({ ...inputFields, qty: e.target.value });
@@ -86,6 +88,7 @@ const AddToPortfolioModal = ({ toggleModal, coinData }) => {
           </div>
           <div className="m-up-2 center-x form-div">
             <p className="form-label">Amount</p>
+            <i className="bx bx-dollar is-light"></i>
             <input
               onChange={(e) => {
                 setInputFields({ ...inputFields, amount: e.target.value });
