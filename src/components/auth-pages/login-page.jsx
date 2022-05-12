@@ -30,24 +30,26 @@ const LoginPage = () => {
         </div>
         <div className="form-div m-up-1">
           <p className="form-label">Email</p>
+          <i className="bx bx-envelope is-light"></i>
           <input
             onChange={(e) =>
               setInputField({ ...inputField, email: e.target.value })
             }
             type="text"
             className="form-input input-focused"
-            placeholder="enter your email id"
+            placeholder="Enter your Email"
             required=""
             value={inputField.email}
           />
           <p className="form-label m-up-2">Password</p>
+          <i className="bx bx-key is-light"></i>
           <input
             onChange={(e) =>
               setInputField({ ...inputField, password: e.target.value })
             }
             type="password"
             className="form-input input-focused"
-            placeholder="enter your password"
+            placeholder="Enter your Password"
             required=""
             value={inputField.password}
           />

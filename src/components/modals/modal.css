@@ -9,3 +9,13 @@
   margin-top: -30vh;
   background-color: white;
 }
+.logout-wrapper {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+}
+.logout {
+  margin-top: 50vh;
+  margin-left: auto;
+  margin-right: auto;
+}

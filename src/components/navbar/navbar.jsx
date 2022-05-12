@@ -1,89 +1,116 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/auth-context";
+import { LogoutModal } from "../modals/logout-modal";
 import "./navbar.css";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const { userDataState } = useAuth();
+  const [showLogout, setShowLogout] = useState(false);
   const [showNav, setShowNav] = useState(false);
+  const { token } = userDataState;
+
+  const toggleLogout = () => {
+    setShowLogout((prevState) => !prevState);
+  };
+
   const hamburgerClick = () => {
     setShowNav((prevState) => !prevState);
   };
 
   return (
-    <div className="nav">
-      <nav className="navbar li-shadow">
-        <div className="nav-brand">
-          <span href="" className="logo-a">
-            <img className="logo-s" src="/images/logo.png" alt="" />
-          </span>
-        </div>
-        <div onClick={hamburgerClick} className="nav-hamburger">
-          <i className="fas fa-bars" />
-        </div>
-        <div className="nav-menu">
-          <div className="nav-start">
-            <span
-              onClick={() => navigate("/dashboard")}
-              className="nav-item link"
-            >
-              Dashboard
-            </span>
-            <span
-              onClick={() => navigate("/portfolio")}
-              className="nav-item link"
-            >
-              Portfolio
-            </span>
-            <span onClick={() => navigate("/search")} className="nav-item link">
-              Search
+    <>
+      <LogoutModal showLogout={showLogout} toggleLogout={toggleLogout} />
+      <div className="nav">
+        <nav className="navbar li-shadow">
+          <div className="nav-brand">
+            <span href="" className="logo-a">
+              <img className="logo-s" src="/images/logo.png" alt="" />
             </span>
           </div>
-          <div className="nav-end">
-            <button className="dark-mode btn-icon nav-icons m-x-1">
-              <i className="fas fa-moon" />
-            </button>
-            <button
-              onClick={() => navigate("/signup")}
-              className="btn-secondary nav-btn btn-small"
-            >
-              Sign up
-            </button>
-            <button
-              onClick={() => navigate("/login")}
-              className="btn-primary nav-btn btn-small"
-            >
-              Log in
-            </button>
+          <div onClick={hamburgerClick} className="nav-hamburger">
+            <i className="fas fa-bars" />
           </div>
-        </div>
-      </nav>
+          <div className="nav-menu">
+            <div className="nav-start">
+              <span
+                onClick={() => navigate("/dashboard")}
+                className="nav-item link"
+              >
+                Dashboard
+              </span>
+              <span
+                onClick={() => navigate("/portfolio")}
+                className="nav-item link"
+              >
+                Portfolio
+              </span>
+              <span
+                onClick={() => navigate("/search")}
+                className="nav-item link"
+              >
+                Search
+              </span>
+            </div>
+            <div className="nav-end">
+              <button className="dark-mode btn-icon nav-icons m-x-1">
+                <i className="fas fa-moon" />
+              </button>
+              {token ? (
+                <button
+                  onClick={toggleLogout}
+                  className="btn-primary nav-btn btn-small"
+                >
+                  Log Out
+                </button>
+              ) : (
+                <>
+                  <button
+                    onClick={() => navigate("/signup")}
+                    className="btn-secondary nav-btn btn-small"
+                  >
+                    Sign up
+                  </button>
+                  <button
+                    onClick={() => navigate("/login")}
+                    className="btn-primary nav-btn btn-small"
+                  >
+                    Log in
+                  </button>
+                </>
+              )}
+            </div>
+          </div>
+        </nav>
 
-      <div
-        className={`mobile-navbar ${
-          showNav ? "mobile-navbar-view" : null
-        } text-center flex-c-w`}
-      >
-        <div className="text-center m-up-3 center-x">
-          <img className="logo-s" src="/images/logo.png" alt="" />
-          <p className="is-4 is-blue">Tradebook</p>
+        <div
+          className={`mobile-navbar ${
+            showNav ? "mobile-navbar-view" : null
+          } text-center flex-c-w`}
+        >
+          <div className="text-center m-up-3 center-x">
+            <img className="logo-s" src="/images/logo.png" alt="" />
+            <p className="is-4 is-blue">Tradebook</p>
+          </div>
+          <Link className="is-3 m-up-2 is-dark" to="/">
+            Home
+          </Link>
+          <Link className="is-3 m-up-2 is-dark" to="/videoListing">
+            Dashboard
+          </Link>
+          <Link className="is-3 m-up-2 is-dark" to="/videoListing/playlist">
+            Search
+          </Link>
+          <Link className="is-3 m-up-2 is-dark" to="/videoListing/watchLater">
+            Portfolio
+          </Link>
+          <Link className="is-3 m-up-2 is-dark" to="/videoListing/history">
+            History
+          </Link>
         </div>
-        <Link className="is-3 m-up-2 is-dark" to="/">
-          Home
-        </Link>
-        <Link className="is-3 m-up-2 is-dark" to="/videoListing">
-          Dashboard
-        </Link>
-        <Link className="is-3 m-up-2 is-dark" to="/videoListing/playlist">
-          Search
-        </Link>
-        <Link className="is-3 m-up-2 is-dark" to="/videoListing/watchLater">
-          Portfolio
-        </Link>
-        <Link className="is-3 m-up-2 is-dark" to="/videoListing/history">
-          History
-        </Link>
       </div>
-    </div>
+    </>
   );
 };
 
