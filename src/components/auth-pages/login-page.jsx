@@ -9,17 +9,25 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
   const [inputField, setInputField] = useState({ email: "", password: "" });
-  const { dispatch } = useAuth();
+  const { setLoading, dispatch } = useAuth();
 
   const demoLoginClick = async () => {
     setInputField({ email: "anurag@gmail.com", password: "123456" });
-    await login("anurag@gmail.com", "123456", dispatch);
-    navigate(from, { replace: true });
+    setLoading(true);
+    try {
+      await login("anurag@gmail.com", "123456", dispatch);
+      navigate(from, { replace: true });
+    } catch {}
+    setLoading(false);
   };
 
   const loginClick = async () => {
-    await login(inputField.email, inputField.password, dispatch);
-    navigate(from, { replace: true });
+    setLoading(true);
+    try {
+      await login(inputField.email, inputField.password, dispatch);
+      navigate(from, { replace: true });
+    } catch {}
+    setLoading(false);
   };
 
   return (

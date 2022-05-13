@@ -7,8 +7,13 @@ import {
   writeBatch,
   serverTimestamp,
 } from "firebase/firestore";
+import { toast } from "react-toastify";
 import { db } from "./firebase";
 const short = require("short-uuid");
+
+const infoToast = (text) => () => toast.info(`${text}`);
+const orderAdded = () => toast.success("Order Added to Portfolio");
+const errorToast = (errorText) => () => toast.error(errorText);
 
 const createUser = async (firstName, lastName, email, userID) => {
   const batch = writeBatch(db);
@@ -29,9 +34,10 @@ const createUser = async (firstName, lastName, email, userID) => {
   }
 };
 
-const getUserData = async (userID, dispatch) => {
+const getUserData = async (userID, dispatch, setLoading) => {
   try {
     const userData = {};
+    setLoading(true);
     const querySnapshot = await getDocs(collection(db, userID));
     querySnapshot.forEach((doc) => {
       userData[doc.id] = doc.data();
@@ -40,6 +46,7 @@ const getUserData = async (userID, dispatch) => {
   } catch (err) {
     console.error("Error during fetching data: ", err);
   }
+  setLoading(false);
 };
 
 const updateOrder = async (
@@ -51,6 +58,7 @@ const updateOrder = async (
     await updateDoc(doc(db, userID, "orders"), {
       [orderID]: { ...orderDetails, openTime: serverTimestamp() },
     });
+    orderAdded();
   } catch (err) {
     console.error("Error during adding/updating data: ", err);
   }
@@ -61,7 +69,10 @@ const closeOrder = async (userID, orderDetails, orderID = short.generate()) => {
     await updateDoc(doc(db, userID, "closed"), {
       [orderID]: { ...orderDetails, closeTime: serverTimestamp() },
     });
+    await updateDoc(doc(db, userID, "orders"), { [orderID]: deleteField() });
+    infoToast("Order Closed")();
   } catch (err) {
+    errorToast("Order close failed")();
     console.error("Error during adding/updating data: ", err);
   }
 };
@@ -69,7 +80,9 @@ const closeOrder = async (userID, orderDetails, orderID = short.generate()) => {
 const deleteOrder = async (userID, orderID) => {
   try {
     await updateDoc(doc(db, userID, "orders"), { [orderID]: deleteField() });
+    infoToast("Order Deleted")();
   } catch (err) {
+    errorToast("Order delete failed")();
     console.error("Error during deleting order: ", err);
   }
 };

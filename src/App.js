@@ -1,4 +1,6 @@
 import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import {
   LandingPage,
@@ -12,10 +14,13 @@ import {
   ErrorPage,
 } from "./components/index";
 import { RequiresAuth } from "./utility";
+import { Loader } from "./utility/loader/loader";
 
 function App() {
   return (
     <div className="App">
+      <Loader />
+      <ToastContainer hideProgressBar={true} />
       <Navbar />
       <Routes>
         <Route path="/login" element={<LoginPage />} />

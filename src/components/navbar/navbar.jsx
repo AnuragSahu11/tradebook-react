@@ -16,6 +16,10 @@ const Navbar = () => {
   };
 
   const hamburgerClick = () => {
+    toggleNav();
+  };
+
+  const toggleNav = () => {
     setShowNav((prevState) => !prevState);
   };
 
@@ -93,21 +97,55 @@ const Navbar = () => {
             <img className="logo-s" src="/images/logo.png" alt="" />
             <p className="is-4 is-blue">Tradebook</p>
           </div>
-          <Link className="is-3 m-up-2 is-dark" to="/">
+          <Link
+            onClick={() => toggleNav()}
+            className="is-3 m-up-2 is-dark"
+            to="/"
+          >
             Home
           </Link>
-          <Link className="is-3 m-up-2 is-dark" to="/videoListing">
+          <Link
+            onClick={() => toggleNav()}
+            className="is-3 m-up-2 is-dark"
+            to="/dashboard"
+          >
             Dashboard
           </Link>
-          <Link className="is-3 m-up-2 is-dark" to="/videoListing/playlist">
+          <Link
+            onClick={() => toggleNav()}
+            className="is-3 m-up-2 is-dark"
+            to="/search"
+          >
             Search
           </Link>
-          <Link className="is-3 m-up-2 is-dark" to="/videoListing/watchLater">
+          <Link
+            onClick={() => toggleNav()}
+            className="is-3 m-up-2 is-dark"
+            to="/portfolio"
+          >
             Portfolio
           </Link>
-          <Link className="is-3 m-up-2 is-dark" to="/videoListing/history">
-            History
-          </Link>
+          {token ? (
+            <p
+              className="is-3 m-up-2 is-dark pointer"
+              onClick={() => {
+                toggleNav();
+                toggleLogout();
+              }}
+            >
+              Logout
+            </p>
+          ) : (
+            <>
+              <Link
+                onClick={() => setShowNav((prevState) => !prevState)}
+                className="is-3 m-up-2 is-dark"
+                to="/login"
+              >
+                Login
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </>

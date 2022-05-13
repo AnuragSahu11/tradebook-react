@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import "./landing-page.css";
 
 const LandingPage = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="hero">
       <div className="hero-div p-y-1 p-x-3 grid-2">
@@ -21,7 +24,10 @@ const LandingPage = () => {
               Manage your Crypto Portfolio the Lucid way
             </div>
           </div>
-          <button className="m-up-3 btn-primary btn-large shadow">
+          <button
+            onClick={() => navigate("/search")}
+            className="m-up-3 btn-primary btn-large shadow"
+          >
             Get started
           </button>
         </div>

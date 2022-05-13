@@ -8,13 +8,13 @@ import { coinIdList, applyFilters, objectToArray } from "../../utility";
 import { getCoinPrices } from "../../utility/api-methods";
 
 const PortfolioPage = () => {
-  const { userDataState, dispatch } = useAuth();
+  const { userDataState, dispatch, setLoading, isLoading } = useAuth();
   const [coinPriceData, setCoinPriceData] = useState({});
   const { token } = userDataState;
 
   useEffect(() => {
     (async () => {
-      await getUserData(token, dispatch);
+      await getUserData(token, dispatch, setLoading);
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -36,18 +36,19 @@ const PortfolioPage = () => {
           <div className="portfolio-data p-dw-5 m-up-2 p-x-3">
             <div className="title is-6 light m-up-6 ">Portfolio</div>
             <div className="portfolio-trades center-x m-up-2">
-              {applyFilters(
-                objectToArray(userDataState.orders),
-                userDataState.filters,
-                coinPriceData
-              ).map((order) => (
-                <Trades
-                  key={order.key}
-                  orderData={order}
-                  orderId={order.key}
-                  currentPrice={coinPriceData[order.id]?.usd || "loading"}
-                />
-              ))}
+              {!isLoading &&
+                applyFilters(
+                  objectToArray(userDataState.orders),
+                  userDataState.filters,
+                  coinPriceData
+                ).map((order) => (
+                  <Trades
+                    key={order.key}
+                    orderData={order}
+                    orderId={order.key}
+                    currentPrice={coinPriceData[order.id]?.usd || "loading"}
+                  />
+                ))}
             </div>
           </div>
         </div>
