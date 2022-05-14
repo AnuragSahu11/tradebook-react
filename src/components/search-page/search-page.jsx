@@ -23,6 +23,7 @@ const SearchPage = () => {
 
   useEffect(() => {
     debounceSearch(inputText);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputText]);
 
   return (

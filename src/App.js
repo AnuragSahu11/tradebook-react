@@ -14,7 +14,7 @@ import {
   ErrorPage,
 } from "./components/index";
 import { RequiresAuth } from "./utility";
-import { Loader } from "./utility/loader/loader";
+import { Loader } from "./utility/loader copy/loader";
 
 function App() {
   return (

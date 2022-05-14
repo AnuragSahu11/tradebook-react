@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
+import { SwitchTheme } from "../../utility";
 import { LogoutModal } from "../modals/logout-modal";
 import "./navbar.css";
 
@@ -58,9 +59,7 @@ const Navbar = () => {
               </span>
             </div>
             <div className="nav-end">
-              <button className="dark-mode btn-icon nav-icons m-x-1">
-                <i className="fas fa-moon" />
-              </button>
+              <SwitchTheme />
               {token ? (
                 <button
                   onClick={toggleLogout}
@@ -146,6 +145,9 @@ const Navbar = () => {
               </Link>
             </>
           )}
+          <div className="center-x m-up-2">
+            <SwitchTheme />
+          </div>
         </div>
       </div>
     </>

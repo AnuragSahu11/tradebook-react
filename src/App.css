@@ -15,3 +15,31 @@
 .Toastify__toast-body {
   font-size: 1.5rem;
 }
+
+.dark-theme {
+  --white: #212121;
+  --input-background: #181a1b;
+  --placeholder-darktheme: #7d7467;
+}
+input {
+  background-color: var(--input-background);
+  color: var(--placeholder-darktheme);
+}
+::placeholder {
+  color: var(--placeholder-darktheme);
+  opacity: 1;
+}
+
+::-ms-input-placeholder {
+  color: var(--placeholder-darktheme);
+}
+.btn-primary {
+  color: var(--permanent-white);
+}
+.li-shadow {
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+    rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+}
+.btn-small {
+  color: var(--permanent-white);
+}
