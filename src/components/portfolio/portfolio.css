@@ -37,13 +37,23 @@
 .coin-logo {
   width: 42px;
 }
+.show-filter-title {
+  cursor: pointer;
+  display: none;
+}
 
 @media only screen and (max-width: 768px) {
+  .show-filter-title {
+    display: block;
+  }
+  .filter-title {
+    display: none;
+  }
   .filter-menu {
     position: relative;
     height: min-content;
   }
-  .filter-menu > :nth-child(n + 2) {
+  .filter-menu-hide > :nth-child(n + 2) {
     display: none;
   }
 }

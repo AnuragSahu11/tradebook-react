@@ -24,6 +24,7 @@ const SignupPage = () => {
         </div>
         <div className="form-div m-up-1">
           <p className="form-label">First Name</p>
+          <i className="bx bx-user is-light"></i>
           <input
             onChange={(e) =>
               setInputField({ ...inputField, first: e.target.value })
@@ -31,10 +32,11 @@ const SignupPage = () => {
             value={inputField.first}
             type="text"
             className="form-input input-focused"
-            placeholder="enter your full name"
+            placeholder="Enter your First Name"
             required=""
           />
-          <p className="form-label">Last Name</p>
+          <p className="form-label m-up-1">Last Name</p>
+          <i className="bx bx-user is-light"></i>
           <input
             onChange={(e) =>
               setInputField({ ...inputField, last: e.target.value })
@@ -42,10 +44,11 @@ const SignupPage = () => {
             value={inputField.last}
             type="text"
             className="form-input input-focused"
-            placeholder="enter your full name"
+            placeholder="Enter your Last Name"
             required=""
           />
           <p className="form-label m-up-2">Email</p>
+          <i className="bx bx-envelope is-light"></i>
           <input
             onChange={(e) =>
               setInputField({ ...inputField, email: e.target.value })
@@ -53,10 +56,11 @@ const SignupPage = () => {
             value={inputField.email}
             type="email"
             className="form-input input-focused"
-            placeholder="enter your email"
+            placeholder="Enter your Email"
             required=""
           />
           <p className="form-label m-up-2">Password</p>
+          <i className="bx bx-key is-light"></i>
           <input
             onChange={(e) =>
               setInputField({ ...inputField, password: e.target.value })
@@ -64,7 +68,7 @@ const SignupPage = () => {
             value={inputField.password}
             type="password"
             className="form-input input-focused"
-            placeholder="enter your password"
+            placeholder="Enter your Password"
             required=""
           />
         </div>

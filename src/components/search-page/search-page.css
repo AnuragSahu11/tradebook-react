@@ -1,8 +1,9 @@
-.form-input {
+.search-form-input {
   border-radius: var(--border-radius-m);
-  padding: var(--s);
   font-size: var(--is-4);
   border: solid var(--grey);
+  height: 4.5rem;
+  padding-left: 45px;
 }
 .text {
   margin-bottom: 0px;
@@ -26,4 +27,7 @@
 }
 .result-thumbnail {
   width: 50px;
+}
+.search-input-div .search-icon {
+  font-size: 30px;
 }

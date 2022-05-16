@@ -2,6 +2,8 @@ import { useAuth } from "../../context/auth-context";
 import { closeOrder, deleteOrder, getUserData } from "../../firebase/firestore";
 
 const Trades = ({ orderData, currentPrice, orderId }) => {
+  const { userDataState } = useAuth();
+  const { token } = userDataState;
   const { name, symbol, quantity, price, image } = orderData;
 
   const { dispatch } = useAuth();
@@ -32,20 +34,20 @@ const Trades = ({ orderData, currentPrice, orderId }) => {
 
   const closeTradeClick = async () => {
     await closeOrder(
-      "vpLtiGgM54Xc4ACV4R8xTvg4rTj2",
+      token,
       {
         ...orderData,
         closingPrice: currentPrice,
       },
       orderId
     );
-    await deleteOrder("vpLtiGgM54Xc4ACV4R8xTvg4rTj2", orderId);
-    getUserData("vpLtiGgM54Xc4ACV4R8xTvg4rTj2", dispatch);
+    await deleteOrder(token, orderId);
+    getUserData(token, dispatch);
   };
 
   const deleteTradeClick = async () => {
-    await deleteOrder("vpLtiGgM54Xc4ACV4R8xTvg4rTj2", orderId);
-    getUserData("vpLtiGgM54Xc4ACV4R8xTvg4rTj2", dispatch);
+    await deleteOrder(token, orderId);
+    getUserData(token, dispatch);
   };
 
   return (

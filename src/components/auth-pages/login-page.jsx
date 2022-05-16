@@ -1,19 +1,25 @@
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
 import { login } from "../../firebase/firebase-auth";
 import "./login.css";
 
 const LoginPage = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
   const [inputField, setInputField] = useState({ email: "", password: "" });
   const { dispatch } = useAuth();
 
   const demoLoginClick = async () => {
     setInputField({ email: "anurag@gmail.com", password: "123456" });
-    login("anurag@gmail.com", "123456", dispatch);
+    await login("anurag@gmail.com", "123456", dispatch);
+    navigate(from, { replace: true });
   };
 
-  const loginClick = () => {
-    login(inputField.email, inputField.password, dispatch);
+  const loginClick = async () => {
+    await login(inputField.email, inputField.password, dispatch);
+    navigate(from, { replace: true });
   };
 
   return (
@@ -24,24 +30,26 @@ const LoginPage = () => {
         </div>
         <div className="form-div m-up-1">
           <p className="form-label">Email</p>
+          <i className="bx bx-envelope is-light"></i>
           <input
             onChange={(e) =>
               setInputField({ ...inputField, email: e.target.value })
             }
             type="text"
             className="form-input input-focused"
-            placeholder="enter your email id"
+            placeholder="Enter your Email"
             required=""
             value={inputField.email}
           />
           <p className="form-label m-up-2">Password</p>
+          <i className="bx bx-key is-light"></i>
           <input
             onChange={(e) =>
               setInputField({ ...inputField, password: e.target.value })
             }
             type="password"
             className="form-input input-focused"
-            placeholder="enter your password"
+            placeholder="Enter your Password"
             required=""
             value={inputField.password}
           />

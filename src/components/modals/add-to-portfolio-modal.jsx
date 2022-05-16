@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import { useAuth } from "../../context/auth-context";
 import { updateOrder } from "../../firebase/firestore";
 import { getCoinData } from "../../utility/api-methods";
 import "./modal.css";
 
 const AddToPortfolioModal = ({ toggleModal, coinData }) => {
+  const { userDataState } = useAuth();
+  const { token } = userDataState;
   const [currentPrice, setcurrentPrice] = useState("");
   const { name, symbol, image, id } = coinData;
   const [inputFields, setInputFields] = useState({
@@ -23,7 +26,7 @@ const AddToPortfolioModal = ({ toggleModal, coinData }) => {
       let price = userPrice || currentPrice;
       let quantity = qty || (amount / currentPrice).toFixed(2);
 
-      updateOrder("vpLtiGgM54Xc4ACV4R8xTvg4rTj2", {
+      updateOrder(token, {
         id: id,
         name: name,
         price: price,
@@ -58,6 +61,7 @@ const AddToPortfolioModal = ({ toggleModal, coinData }) => {
           </div>
           <div className="m-up-2 center-x form-div">
             <p className="form-label">Price</p>
+            <i className="bx bx-dollar-circle is-light"></i>
             <input
               onChange={(e) => {
                 setInputFields({ ...inputFields, userPrice: e.target.value });
@@ -70,6 +74,7 @@ const AddToPortfolioModal = ({ toggleModal, coinData }) => {
           </div>
           <div className="m-up-2 center-x form-div">
             <p className="form-label">Quantity</p>
+            <i className="bx bx-coin-stack is-light"></i>
             <input
               onChange={(e) => {
                 setInputFields({ ...inputFields, qty: e.target.value });
@@ -83,6 +88,7 @@ const AddToPortfolioModal = ({ toggleModal, coinData }) => {
           </div>
           <div className="m-up-2 center-x form-div">
             <p className="form-label">Amount</p>
+            <i className="bx bx-dollar is-light"></i>
             <input
               onChange={(e) => {
                 setInputFields({ ...inputFields, amount: e.target.value });
