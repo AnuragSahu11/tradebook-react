@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# Lucid TradeBook
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Lucid logo](public/images/logo.png)
 
-## Available Scripts
+TradeBook is a web app to record your crypto trades.
+You can add your crypto trade data to your portfolio by searching a crypto currency in the search page.
+After adding the currency to your portfolio you can see the current price and it's profit/loss data by refreshing the portfolio page ( because of limited number of API calls).
+Use can use Search page to add a plethora of coins to your portfolio, search uses coingecko API which offers almost every crypto currency.
+To see the closed trades analysis and open trade analysis go to the dashboard page.
+   <hr>
 
-In the project directory, you can run:
+### Tech Stack Used
+- React
+- Firebase
 
-### `npm start`
+### Live Deployment
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Checkout the live website [here](https://trade-book.netlify.app)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Features
+- Landing Page
+- Login/SignUP
+- Search Crypto currency
+- Add crypto to portfolio ( multiple options available )
+- Portfolio page
+- Filter Trades according to different criteria
+- Close trade (Successfully complete a trade) , Delete trade (Delete or remove the trade from your portfolio)
+- Dashboard
+- Dashboard - Closed Trades analysis - Analysis of past trades that have been succesfully closed
+- Dashboard - Open Trades analysis - Analysis of current portfolio/open trades
+- Pie Chart for
+- LogOut
 
-### `npm test`
+### Misc Features
+- Persistent Dark mode
+- Mobile responsive
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+###Scrrenshots
