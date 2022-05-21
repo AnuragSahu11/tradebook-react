@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import "./ReactToastify.css";
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import {
   LandingPage,
