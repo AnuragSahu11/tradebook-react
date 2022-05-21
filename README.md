@@ -23,7 +23,7 @@ Checkout the live website [here](https://trade-book.netlify.app)
 - Landing Page
 - Login/SignUP
 - Search Crypto currency
-- Add crypto to portfolio ( multiple options available )
+- Add crypto currency data to portfolio ( multiple options available )
 - Portfolio page
 - Filter Trades according to different criteria
 - Close trade (Successfully complete a trade) , Delete trade (Delete or remove the trade from your portfolio)
