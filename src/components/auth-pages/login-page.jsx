@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
 import { login } from "../../firebase/firebase-auth";
+import { changeTitle } from "../../utility";
 import "./login.css";
 
 const LoginPage = () => {
@@ -9,18 +10,28 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
   const [inputField, setInputField] = useState({ email: "", password: "" });
-  const { dispatch } = useAuth();
+  const { setLoading, dispatch } = useAuth();
 
   const demoLoginClick = async () => {
     setInputField({ email: "anurag@gmail.com", password: "123456" });
-    await login("anurag@gmail.com", "123456", dispatch);
-    navigate(from, { replace: true });
+    setLoading(true);
+    try {
+      await login("anurag@gmail.com", "123456", dispatch);
+      navigate(from, { replace: true });
+    } catch {}
+    setLoading(false);
   };
 
   const loginClick = async () => {
-    await login(inputField.email, inputField.password, dispatch);
-    navigate(from, { replace: true });
+    setLoading(true);
+    try {
+      await login(inputField.email, inputField.password, dispatch);
+      navigate(from, { replace: true });
+    } catch {}
+    setLoading(false);
   };
+
+  changeTitle("Login to Tradebook");
 
   return (
     <section className="login-section m-up-6 p-x-1">

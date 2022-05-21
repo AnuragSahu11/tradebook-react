@@ -1,5 +1,8 @@
+import { changeTitle } from "../../utility";
+
 const Search = ({ setInputText }) => {
   const search = () => {};
+  changeTitle("Search any Crypto Coin");
 
   return (
     <div className="search center-x center-text center-y">

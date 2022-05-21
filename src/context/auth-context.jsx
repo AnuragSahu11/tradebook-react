@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 import { authReducer } from "./auth-reducer";
 
 const AuthContext = createContext();
@@ -12,11 +12,13 @@ const AuthProvider = ({ children }) => {
     filters: {},
     closed: {},
   };
-
+  const [isLoading, setLoading] = useState(false);
   const [userDataState, dispatch] = useReducer(authReducer, initialUserData);
 
   return (
-    <AuthContext.Provider value={{ userDataState, dispatch }}>
+    <AuthContext.Provider
+      value={{ userDataState, dispatch, isLoading, setLoading }}
+    >
       {children}
     </AuthContext.Provider>
   );

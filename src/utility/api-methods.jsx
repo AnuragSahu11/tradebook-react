@@ -1,10 +1,12 @@
 import axios from "axios";
 
-const searchCoins = async (searchText, setSearchResult) => {
+const searchCoins = async (searchText, setSearchResult, setLoading) => {
+  setLoading(true);
   const { data } = await axios.get(
     `https://api.coingecko.com/api/v3/search?query=${searchText}`
   );
   setSearchResult(data.coins);
+  setLoading(false);
 };
 
 const getCoinData = async (coinId, setCoinPrice) => {

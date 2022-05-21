@@ -41,7 +41,6 @@ const Trades = ({ orderData, currentPrice, orderId }) => {
       },
       orderId
     );
-    await deleteOrder(token, orderId);
     getUserData(token, dispatch);
   };
 

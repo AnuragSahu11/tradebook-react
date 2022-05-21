@@ -7,7 +7,7 @@
 .modal {
   filter: opacity(100%);
   margin-top: -30vh;
-  background-color: white;
+  background-color: var(--white);
 }
 .logout-wrapper {
   position: absolute;

@@ -1,4 +1,8 @@
+import { changeTitle } from "../../utility";
+
 const ErrorPage = () => {
+  changeTitle("Page not found");
+
   return (
     <div className="error-page width-100">
       <div className="error-image-wrapper center-x">
