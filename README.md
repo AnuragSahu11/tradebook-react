@@ -1,5 +1,8 @@
 # Lucid TradeBook
 
+#### NOTE - This web app will not work in forced https extension or browser ie Brave browser
+<br>
+
 ![Lucid logo](public/images/logo.png)
 
 TradeBook is a web app to record your crypto trades.
