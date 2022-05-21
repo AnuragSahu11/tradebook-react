@@ -55,12 +55,21 @@ const AddToPortfolioModal = ({ toggleModal, coinData }) => {
         <i className="modal-icon is-blue far fa-address-card" />
         <div className="textbox">
           <div className="title text-center">Add to portfolio {name} </div>
+          <p className="is-2">
+            Coin Buying price will take your provided price as the coin buying
+            price.If coin buying price is not input then the current coin price
+            will be taken as the default input.
+          </p>
+          <p className="is-2">
+            Then Select either number of coins or the amount invested. Click Add
+            to add trade to portfolio.
+          </p>
           <div className="m-up-2 center-x form-div">
-            <p className="form-label">Current Price</p>
-            <p className="current-price is-4">{currentPrice}</p>
+            <p className="form-label is-4 bold is-green">Current Price</p>
+            <p className="current-price m-y-0 is-4 is-green">{currentPrice}</p>
           </div>
           <div className="m-up-2 center-x form-div">
-            <p className="form-label">Price</p>
+            <p className="form-label">Your Buying price</p>
             <i className="bx bx-dollar-circle is-light"></i>
             <input
               onChange={(e) => {
@@ -68,12 +77,12 @@ const AddToPortfolioModal = ({ toggleModal, coinData }) => {
               }}
               type="text"
               className="form-input input-focused"
-              placeholder="Indice price"
+              placeholder="Coin buying price"
               required=""
             />
           </div>
           <div className="m-up-2 center-x form-div">
-            <p className="form-label">Quantity</p>
+            <p className="form-label">Number of Coins</p>
             <i className="bx bx-coin-stack is-light"></i>
             <input
               onChange={(e) => {
@@ -87,7 +96,7 @@ const AddToPortfolioModal = ({ toggleModal, coinData }) => {
             />
           </div>
           <div className="m-up-2 center-x form-div">
-            <p className="form-label">Amount</p>
+            <p className="form-label">Amount Invested</p>
             <i className="bx bx-dollar is-light"></i>
             <input
               onChange={(e) => {

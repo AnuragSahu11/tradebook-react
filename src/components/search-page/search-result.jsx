@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useAuth } from "../../context/auth-context";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { AddToPortfolioModal } from "../modals/add-to-portfolio-modal";
 
 const SearchResult = ({ searchResult }) => {
@@ -37,9 +40,18 @@ const SearchResultComponent = ({
   setCoinData,
   id,
 }) => {
+  const { userDataState } = useAuth();
+  const navigate = useNavigate();
+  const { token } = userDataState;
   const addClick = () => {
-    toggleModal();
-    setCoinData({ name: name, symbol: symbol, image: image, id: id });
+    if (token) {
+      toggleModal();
+      setCoinData({ name: name, symbol: symbol, image: image, id: id });
+    } else {
+      const infoToast = () => toast.info("You need to Login first");
+      infoToast();
+      navigate("/login");
+    }
   };
   return (
     <div className="result-data is-dark p-x-3 elevated center-text p-y-3 li-shadow">

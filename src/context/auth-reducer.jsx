@@ -9,6 +9,14 @@ const authReducer = (state, action) => {
         orders: action.payload.orders,
         closed: action.payload.closed,
       };
+    case "LOGOUT":
+      return {
+        token: "",
+        userData: {},
+        orders: {},
+        filters: {},
+        closed: {},
+      };
     case "SHOW_PROFIT":
       return {
         ...state,

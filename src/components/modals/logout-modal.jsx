@@ -1,5 +1,12 @@
+import { useAuth } from "../../context/auth-context";
+
 const LogoutModal = ({ showLogout, toggleLogout }) => {
-  const logoutClickHandler = () => {};
+  const { dispatch } = useAuth();
+
+  const logoutClickHandler = () => {
+    dispatch({ type: "LOGOUT" });
+    toggleLogout();
+  };
 
   const outsideModalClick = () => {
     toggleLogout();

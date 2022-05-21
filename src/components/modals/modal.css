@@ -7,7 +7,8 @@
 .modal {
   filter: opacity(100%);
   margin-top: -30vh;
-  background-color: white;
+  background-color: var(--white);
+  width: 30vw;
 }
 .logout-wrapper {
   position: absolute;
@@ -18,4 +19,19 @@
   margin-top: 50vh;
   margin-left: auto;
   margin-right: auto;
+}
+@media only screen and (max-width: 1280px) {
+  .modal {
+    width: 50vw;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .modal {
+    width: 60vw;
+  }
+}
+@media only screen and (max-width: 778px) {
+  .modal {
+    width: 90vw;
+  }
 }
