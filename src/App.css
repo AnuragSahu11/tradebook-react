@@ -43,3 +43,6 @@ input {
 .btn-small {
   color: var(--permanent-white);
 }
+.btn-secondary {
+  color: var(--primary);
+}
