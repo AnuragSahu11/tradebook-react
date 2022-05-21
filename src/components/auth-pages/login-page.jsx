@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
 import { login } from "../../firebase/firebase-auth";
+import { changeTitle } from "../../utility";
 import "./login.css";
 
 const LoginPage = () => {
@@ -29,6 +30,8 @@ const LoginPage = () => {
     } catch {}
     setLoading(false);
   };
+
+  changeTitle("Login to Tradebook");
 
   return (
     <section className="login-section m-up-6 p-x-1">

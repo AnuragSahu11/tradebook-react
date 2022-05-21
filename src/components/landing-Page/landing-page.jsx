@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
+import { changeTitle } from "../../utility";
 import "./landing-page.css";
 
 const LandingPage = () => {
   const navigate = useNavigate();
+  changeTitle("Welcome to Tradebook");
 
   return (
     <section className="hero">

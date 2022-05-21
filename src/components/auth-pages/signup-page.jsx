@@ -3,6 +3,7 @@ import { signUp } from "../../firebase/firebase-auth";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
 import { useAuth } from "../../context/auth-context";
+import { changeTitle } from "../../utility";
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -19,6 +20,8 @@ const SignupPage = () => {
     await signUp(email, password, first, last);
     setLoading(false);
   };
+
+  changeTitle("SignUp for Tradebook");
 
   return (
     <section className="signup-section m-up-6 p-x-1">

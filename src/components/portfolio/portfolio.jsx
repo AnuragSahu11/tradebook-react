@@ -4,7 +4,12 @@ import "./portfolio.css";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/auth-context";
 import { getUserData } from "../../firebase/firestore";
-import { coinIdList, applyFilters, objectToArray } from "../../utility";
+import {
+  coinIdList,
+  applyFilters,
+  objectToArray,
+  changeTitle,
+} from "../../utility";
 import { getCoinPrices } from "../../utility/api-methods";
 
 const PortfolioPage = () => {
@@ -27,6 +32,8 @@ const PortfolioPage = () => {
       setCoinPriceData(data);
     })();
   }, [userDataState]);
+
+  changeTitle("Portfolio");
 
   return (
     <main>

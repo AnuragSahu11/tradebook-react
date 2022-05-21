@@ -2,6 +2,7 @@ import { PieChart, Pie } from "recharts";
 import { useAuth } from "../../context/auth-context";
 import {
   accountValue,
+  changeTitle,
   coinIdList,
   currentAccValue,
   lossTrades,
@@ -45,6 +46,8 @@ const Dashboard = () => {
       setCoinPriceData(data);
     })();
   }, [userDataState]);
+
+  changeTitle("Dashboard");
 
   const OpenOrderPieChartData = [
     {
