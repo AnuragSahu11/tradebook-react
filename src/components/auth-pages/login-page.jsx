@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useAuth } from "../../context/auth-context";
 import { login } from "../../firebase/firebase-auth";
 import { changeTitle } from "../../utility";
@@ -35,11 +36,13 @@ const LoginPage = () => {
     setLoading(true);
     if (validateForm()) {
       try {
-        await login(email, password, dispatch);
+        await login(inputField, dispatch, setLoading);
         navigate(from, { replace: true });
       } catch {}
-      setLoading(false);
+    } else {
+      toast.warn("Enter valid credentials");
     }
+    setLoading(false);
   };
 
   changeTitle("Login to Tradebook");

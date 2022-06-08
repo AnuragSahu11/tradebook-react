@@ -16,6 +16,7 @@ const SignupPage = () => {
     lastName: "",
     acceptTC: false,
   });
+  const [viewPassword, setViewPassword] = useState(false);
   const { email, password, firstName, lastName, acceptTC } = inputField;
 
   const validateForm = () => {
@@ -80,13 +81,16 @@ const SignupPage = () => {
             required=""
           />
           <p className="form-label m-up-2">Password</p>
-          <i className="bx bx-key is-light"></i>
+          <i
+            onClick={() => setViewPassword(!viewPassword)}
+            className="fas fa-eye is-light pointer"
+          ></i>{" "}
           <input
             onChange={(e) =>
               setInputField({ ...inputField, password: e.target.value })
             }
             value={password}
-            type="password"
+            type={viewPassword ? "text" : "password"}
             className="form-input input-focused"
             placeholder="Enter your Password"
             required=""

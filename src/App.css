@@ -49,3 +49,6 @@ input {
 .form-div .form-input {
   width: 100%;
 }
+.pointer {
+  cursor: pointer;
+}
