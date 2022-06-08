@@ -26,12 +26,12 @@ input {
   color: var(--placeholder-darktheme);
 }
 ::placeholder {
-  color: var(--placeholder-darktheme);
+  color: #7d7467;
   opacity: 1;
 }
 
 ::-ms-input-placeholder {
-  color: var(--placeholder-darktheme);
+  color: #7d7467;
 }
 .btn-primary {
   color: var(--permanent-white);
@@ -45,4 +45,7 @@ input {
 }
 .btn-secondary {
   color: var(--primary);
+}
+.form-div .form-input {
+  width: 100%;
 }

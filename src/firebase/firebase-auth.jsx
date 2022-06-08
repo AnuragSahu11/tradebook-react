@@ -16,12 +16,13 @@ const errorToast = (text) => {
   notifyError();
 };
 
-const login = async (email, password, dispatch) => {
+const login = async ({ email, password }, dispatch, setLoading) => {
   try {
     const res = await signInWithEmailAndPassword(auth, email, password);
     const { user } = res;
+    localStorage.setItem("token", user.uid);
     dispatch({ type: "SAVE_TOKEN", payload: user.uid });
-    getUserData(user.uid, dispatch);
+    getUserData(user.uid, dispatch, setLoading);
     succToast("Login");
   } catch (err) {
     errorToast("Login");

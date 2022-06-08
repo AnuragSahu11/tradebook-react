@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./login.css";
 import { useAuth } from "../../context/auth-context";
 import { changeTitle } from "../../utility";
+import { toast } from "react-toastify";
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -11,14 +12,26 @@ const SignupPage = () => {
   const [inputField, setInputField] = useState({
     email: "",
     password: "",
-    first: "",
-    last: "",
+    firstName: "",
+    lastName: "",
+    acceptTC: false,
   });
-  const { email, password, first, last } = inputField;
+  const { email, password, firstName, lastName, acceptTC } = inputField;
+
+  const validateForm = () => {
+    //eslint-disable-next-line
+    const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    return firstName && lastName && regex.test(email) && password && acceptTC;
+  };
+
   const signUpClick = async () => {
-    setLoading(true);
-    await signUp(email, password, first, last);
-    setLoading(false);
+    if (validateForm()) {
+      setLoading(true);
+      await signUp(email, password, firstName, lastName);
+      setLoading(false);
+    } else {
+      toast.warn("Enter valid details");
+    }
   };
 
   changeTitle("SignUp for Tradebook");
@@ -34,9 +47,9 @@ const SignupPage = () => {
           <i className="bx bx-user is-light"></i>
           <input
             onChange={(e) =>
-              setInputField({ ...inputField, first: e.target.value })
+              setInputField({ ...inputField, firstName: e.target.value })
             }
-            value={inputField.first}
+            value={firstName}
             type="text"
             className="form-input input-focused"
             placeholder="Enter your First Name"
@@ -46,9 +59,9 @@ const SignupPage = () => {
           <i className="bx bx-user is-light"></i>
           <input
             onChange={(e) =>
-              setInputField({ ...inputField, last: e.target.value })
+              setInputField({ ...inputField, lastName: e.target.value })
             }
-            value={inputField.last}
+            value={lastName}
             type="text"
             className="form-input input-focused"
             placeholder="Enter your Last Name"
@@ -60,7 +73,7 @@ const SignupPage = () => {
             onChange={(e) =>
               setInputField({ ...inputField, email: e.target.value })
             }
-            value={inputField.email}
+            value={email}
             type="email"
             className="form-input input-focused"
             placeholder="Enter your Email"
@@ -72,15 +85,22 @@ const SignupPage = () => {
             onChange={(e) =>
               setInputField({ ...inputField, password: e.target.value })
             }
-            value={inputField.password}
+            value={password}
             type="password"
             className="form-input input-focused"
             placeholder="Enter your Password"
             required=""
           />
         </div>
-        <label htmlFor="" className="m-up-2 form-checkbox">
-          <input type="checkbox" className="" />
+        <label className="m-up-2 form-checkbox">
+          <input
+            onChange={() =>
+              setInputField({ ...inputField, acceptTC: !inputField.acceptTC })
+            }
+            type="checkbox"
+            className=""
+            checked={acceptTC}
+          />
           Accept all terms and conditions
         </label>
         <div className="btn-vertical m-up-3 center-text">
