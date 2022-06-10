@@ -28,7 +28,7 @@ const Navbar = () => {
     <>
       <LogoutModal showLogout={showLogout} toggleLogout={toggleLogout} />
       <div className="nav">
-        <nav className="navbar li-shadow">
+        <nav className="navbar shadow">
           <div className="nav-brand">
             <span href="" className="logo-a">
               <img className="logo-s" src="/images/logo.png" alt="" />

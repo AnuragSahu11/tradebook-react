@@ -32,7 +32,7 @@ const login = async ({ email, password }, dispatch, setLoading) => {
   }
 };
 
-const signUp = async (email, password, firstName, lastName) => {
+const signUp = async (email, password, firstName, lastName, navigate) => {
   try {
     const response = await createUserWithEmailAndPassword(
       auth,
@@ -41,6 +41,7 @@ const signUp = async (email, password, firstName, lastName) => {
     );
     await createUser(firstName, lastName, email, response.user.uid);
     succToast("Sign Up");
+    navigate("/login");
   } catch (err) {
     errorToast("Sign UP");
     const errCode = err.code;

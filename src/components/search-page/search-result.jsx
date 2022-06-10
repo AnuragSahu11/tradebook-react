@@ -46,7 +46,7 @@ const SearchResultComponent = ({
   const addClick = () => {
     if (token) {
       toggleModal();
-      setCoinData({ name: name, symbol: symbol, image: image, id: id });
+      setCoinData({ name, symbol, image, id });
     } else {
       const infoToast = () => toast.info("You need to Login first");
       infoToast();
@@ -69,6 +69,7 @@ const SearchResultComponent = ({
           <img className="result-thumbnail" src={`${image}`} alt="" />
         </div>
       </div>
+
 
       <button
         onClick={addClick}

@@ -27,9 +27,14 @@ import {
 } from "../../utility/dashboard-methods";
 
 const Dashboard = () => {
-  const { userDataState, dispatch, isLoading, setLoading } = useAuth();
+  const {
+    userDataState,
+    userDataState: { token },
+    dispatch,
+    isLoading,
+    setLoading,
+  } = useAuth();
   const [coinPriceData, setCoinPriceData] = useState({});
-  const { token } = userDataState;
 
   useEffect(() => {
     (async () => {

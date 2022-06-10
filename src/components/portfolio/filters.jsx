@@ -20,7 +20,7 @@ const Filters = () => {
           <div className="title filter-title is-dark">Filters</div>
           <div
             onClick={toggleShowFilters}
-            className="title show-filter-title is-dark"
+            className="semibold is-3 show-filter-title is-dark"
           >
             Show Filters
           </div>

@@ -28,7 +28,7 @@ const SignupPage = () => {
   const signUpClick = async () => {
     if (validateForm()) {
       setLoading(true);
-      await signUp(email, password, firstName, lastName);
+      await signUp(email, password, firstName, lastName, navigate);
       setLoading(false);
     } else {
       toast.warn("Enter valid details");

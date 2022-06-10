@@ -21,8 +21,9 @@
   justify-content: space-evenly;
 }
 .result-data {
-  width: 20%;
-  min-width: fit-content;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 25rem;
   border-radius: 25px;
 }
 .result-thumbnail {
