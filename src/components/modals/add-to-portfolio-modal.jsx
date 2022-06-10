@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useAuth } from "../../context/auth-context";
 import { updateOrder } from "../../firebase/firestore";
-import { getCoinData } from "../../utility/api-methods";
+import { getCoinData } from "../../server-requests/server-requests";
 import "./modal.css";
 
 const AddToPortfolioModal = ({ toggleModal, coinData }) => {

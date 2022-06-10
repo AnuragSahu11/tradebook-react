@@ -53,6 +53,7 @@ const SearchResultComponent = ({
       navigate("/login");
     }
   };
+
   return (
     <div className="result-data is-dark p-x-3 elevated center-text p-y-3 li-shadow">
       <div className="result-data-div">
@@ -69,7 +70,6 @@ const SearchResultComponent = ({
           <img className="result-thumbnail" src={`${image}`} alt="" />
         </div>
       </div>
-
 
       <button
         onClick={addClick}

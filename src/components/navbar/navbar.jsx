@@ -41,19 +41,19 @@ const Navbar = () => {
             <div className="nav-start">
               <span
                 onClick={() => navigate("/dashboard")}
-                className="nav-item link"
+                className="nav-item link pointer"
               >
                 Dashboard
               </span>
               <span
                 onClick={() => navigate("/portfolio")}
-                className="nav-item link"
+                className="nav-item link pointer"
               >
                 Portfolio
               </span>
               <span
                 onClick={() => navigate("/search")}
-                className="nav-item link"
+                className="nav-item link pointer"
               >
                 Search
               </span>

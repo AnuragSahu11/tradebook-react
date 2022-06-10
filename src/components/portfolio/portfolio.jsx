@@ -10,7 +10,7 @@ import {
   objectToArray,
   changeTitle,
 } from "../../utility";
-import { getCoinPrices } from "../../utility/api-methods";
+import { getCoinPrices } from "../../server-requests/server-requests";
 
 const PortfolioPage = () => {
   const { userDataState, dispatch, setLoading, isLoading } = useAuth();
@@ -33,7 +33,7 @@ const PortfolioPage = () => {
     })();
   }, [userDataState]);
 
-  changeTitle("Portfolio");
+  changeTitle("Portfolio Tradebook");
 
   return (
     <main>

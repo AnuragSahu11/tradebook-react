@@ -13,7 +13,6 @@ import {
 } from "../../utility";
 import { useEffect, useState } from "react";
 import { getUserData } from "../../firebase/firestore";
-import { getCoinPrices } from "../../utility/api-methods";
 import "./dashboard.css";
 import {
   closedLossTrades,
@@ -25,6 +24,7 @@ import {
   totalAmountInvest,
   totalAmountSold,
 } from "../../utility/dashboard-methods";
+import { getCoinPrices } from "../../server-requests/server-requests";
 
 const Dashboard = () => {
   const {
@@ -90,6 +90,8 @@ const Dashboard = () => {
   const closedOrderTotalSold = userDataState
     ? totalAmountSold(userDataState?.closed)
     : null;
+
+  changeTitle("Dashboard Tradebook");
 
   return (
     <main className="">
