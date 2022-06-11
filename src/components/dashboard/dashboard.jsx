@@ -27,14 +27,10 @@ import {
 import { getCoinPrices } from "../../server-requests/server-requests";
 
 const Dashboard = () => {
-  const {
-    userDataState,
-    userDataState: { token },
-    dispatch,
-    isLoading,
-    setLoading,
-  } = useAuth();
+  const { userDataState, dispatch, isLoading, setLoading } = useAuth();
   const [coinPriceData, setCoinPriceData] = useState({});
+
+  const { token, orders, closed } = userDataState || {};
 
   useEffect(() => {
     (async () => {
@@ -45,9 +41,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     (async () => {
-      let { data } = await getCoinPrices(
-        coinIdList(objectToArray(userDataState?.orders))
-      );
+      let { data } = await getCoinPrices(coinIdList(objectToArray(orders)));
       setCoinPriceData(data);
     })();
   }, [userDataState]);
@@ -57,39 +51,33 @@ const Dashboard = () => {
   const OpenOrderPieChartData = [
     {
       name: "profit",
-      value: Math.round(
-        profitTradeAmount(userDataState?.orders, coinPriceData)
-      ),
+      value: Math.round(profitTradeAmount(orders, coinPriceData)),
     },
     {
       name: "loss",
-      value: Math.round(lossTradeAmount(userDataState?.orders, coinPriceData)),
+      value: Math.round(lossTradeAmount(orders, coinPriceData)),
     },
   ];
 
   const ClosedOrderPieChartData = [
     {
       name: "profit",
-      value: Math.round(closedTradeProfit(userDataState?.closed)),
+      value: Math.round(closedTradeProfit(closed)),
     },
     {
       name: "loss",
-      value: Math.round(closedTradeLoss(userDataState?.closed)),
+      value: Math.round(closedTradeLoss(closed)),
     },
   ];
 
   const openOrderTotalValue = userDataState
-    ? currentAccValue(userDataState?.orders, coinPriceData)
+    ? currentAccValue(orders, coinPriceData)
     : null;
-  const openOrderInvestment = userDataState
-    ? accountValue(userDataState?.orders)
-    : null;
+  const openOrderInvestment = userDataState ? accountValue(orders) : null;
   const closedOrderTotalInvest = userDataState
-    ? totalAmountInvest(userDataState?.closed)
+    ? totalAmountInvest(closed)
     : null;
-  const closedOrderTotalSold = userDataState
-    ? totalAmountSold(userDataState?.closed)
-    : null;
+  const closedOrderTotalSold = userDataState ? totalAmountSold(closed) : null;
 
   changeTitle("Dashboard Tradebook");
 
@@ -143,7 +131,7 @@ const Dashboard = () => {
                     Total Open trades
                   </div>
                   <div className="title is-5 semibold">
-                    {objectToArray(userDataState?.orders).length}
+                    {objectToArray(orders).length}
                   </div>
                 </div>
               </div>
@@ -154,7 +142,7 @@ const Dashboard = () => {
                       Profitable Trades
                     </div>
                     <div className="text is-5 is-dark">
-                      {profitTrades(userDataState?.orders, coinPriceData)}
+                      {profitTrades(orders, coinPriceData)}
                     </div>
                   </div>
                   <div className="profit-div">
@@ -171,7 +159,7 @@ const Dashboard = () => {
                   <div className="loss-div">
                     <div className="is-4 semibold is-red">Loss Trades</div>
                     <div className="text is-5 is-dark">
-                      {lossTrades(userDataState?.orders, coinPriceData)}
+                      {lossTrades(orders, coinPriceData)}
                     </div>
                   </div>
                   <div className="loss-div">
@@ -207,7 +195,7 @@ const Dashboard = () => {
                     Total amount invested
                   </div>
                   <div className="title is-5 semibold">
-                    {totalAmountInvest(userDataState?.closed)}
+                    {totalAmountInvest(closed)}
                   </div>
                 </div>
                 <div className="summary-div p-y-3 p-x-3">
@@ -216,7 +204,7 @@ const Dashboard = () => {
                     Total amount sold
                   </div>
                   <div className="title is-5 semibold">
-                    {totalAmountSold(userDataState?.closed)}
+                    {totalAmountSold(closed)}
                   </div>
                 </div>
                 <div className="summary-div width-50 p-y-3 p-x-3">
@@ -247,7 +235,7 @@ const Dashboard = () => {
                       Profitable Trades
                     </div>
                     <div className="text is-5 is-dark">
-                      {closedProfitTrades(userDataState?.closed)}
+                      {closedProfitTrades(closed)}
                     </div>
                   </div>
                   <div className="profit-div">
@@ -267,7 +255,7 @@ const Dashboard = () => {
                   <div className="loss-div">
                     <div className="is-4 semibold is-red">Loss Trades</div>
                     <div className="text is-5 is-dark">
-                      {closedLossTrades(userDataState?.closed)}
+                      {closedLossTrades(closed)}
                     </div>
                   </div>
                   <div className="loss-div">

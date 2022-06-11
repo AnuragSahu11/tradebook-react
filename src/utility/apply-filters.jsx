@@ -3,24 +3,12 @@ const applyFilters = (arr, filters, coinPriceData) => {
 
   const sortedArr = sortArr(arr, sort, coinPriceData);
 
-  const filteredArr = sortedArr.filter((order) => {
+  const filteredArr = sortedArr.filter(({ price, id, quantity }) => {
     if (show === "profit") {
-      return (
-        profitOrLoss(
-          order.price,
-          coinPriceData[order.id]?.usd,
-          order.quantity
-        ) > 0
-      );
+      return profitOrLoss(price, coinPriceData[id]?.usd, quantity) > 0;
     }
     if (show === "loss") {
-      return (
-        profitOrLoss(
-          order.price,
-          coinPriceData[order.id]?.usd,
-          order.quantity
-        ) < 0
-      );
+      return profitOrLoss(price, coinPriceData[id]?.usd, quantity) < 0;
     } else {
       return true;
     }
