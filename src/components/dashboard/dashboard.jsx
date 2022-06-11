@@ -44,6 +44,7 @@ const Dashboard = () => {
       let { data } = await getCoinPrices(coinIdList(objectToArray(orders)));
       setCoinPriceData(data);
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userDataState]);
 
   changeTitle("Dashboard");
