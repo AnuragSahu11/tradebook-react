@@ -28,7 +28,7 @@ const Navbar = () => {
     <>
       <LogoutModal showLogout={showLogout} toggleLogout={toggleLogout} />
       <div className="nav">
-        <nav className="navbar li-shadow">
+        <nav className="navbar shadow">
           <div className="nav-brand">
             <span href="" className="logo-a">
               <img className="logo-s" src="/images/logo.png" alt="" />
@@ -41,19 +41,19 @@ const Navbar = () => {
             <div className="nav-start">
               <span
                 onClick={() => navigate("/dashboard")}
-                className="nav-item link"
+                className="nav-item link pointer"
               >
                 Dashboard
               </span>
               <span
                 onClick={() => navigate("/portfolio")}
-                className="nav-item link"
+                className="nav-item link pointer"
               >
                 Portfolio
               </span>
               <span
                 onClick={() => navigate("/search")}
-                className="nav-item link"
+                className="nav-item link pointer"
               >
                 Search
               </span>

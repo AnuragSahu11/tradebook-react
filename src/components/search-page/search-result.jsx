@@ -46,13 +46,14 @@ const SearchResultComponent = ({
   const addClick = () => {
     if (token) {
       toggleModal();
-      setCoinData({ name: name, symbol: symbol, image: image, id: id });
+      setCoinData({ name, symbol, image, id });
     } else {
       const infoToast = () => toast.info("You need to Login first");
       infoToast();
       navigate("/login");
     }
   };
+
   return (
     <div className="result-data is-dark p-x-3 elevated center-text p-y-3 li-shadow">
       <div className="result-data-div">

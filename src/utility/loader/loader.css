@@ -7,9 +7,9 @@
   }
 }
 .ldio-cz3ptt4enft div {
-  width: 60px;
-  height: 60px;
-  border: 10px solid #8692ea;
+  width: 40px;
+  height: 40px;
+  border: 6px solid var(--primary);
   border-top-color: transparent;
   border-radius: 50%;
 }

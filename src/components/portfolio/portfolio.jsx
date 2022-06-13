@@ -10,7 +10,7 @@ import {
   objectToArray,
   changeTitle,
 } from "../../utility";
-import { getCoinPrices } from "../../utility/api-methods";
+import { getCoinPrices } from "../../server-requests/server-requests";
 
 const PortfolioPage = () => {
   const { userDataState, dispatch, setLoading, isLoading } = useAuth();
@@ -33,7 +33,7 @@ const PortfolioPage = () => {
     })();
   }, [userDataState]);
 
-  changeTitle("Portfolio");
+  changeTitle("Portfolio Tradebook");
 
   return (
     <main>
@@ -41,7 +41,7 @@ const PortfolioPage = () => {
         <div className="grid-20-80 grid-portfolio">
           <Filters />
           <div className="portfolio-data p-dw-5 m-up-2 p-x-3">
-            <div className="title is-6 light m-up-6 ">Portfolio</div>
+            <div className="title is-6 light m-up-6 p-up-1">Portfolio</div>
             <div className="portfolio-trades center-x m-up-2">
               {!isLoading &&
                 applyFilters(

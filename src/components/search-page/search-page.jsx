@@ -2,7 +2,7 @@ import { Search } from "./search";
 import "./search-page.css";
 import { SearchResult } from "./search-result";
 import { useEffect, useState, useRef } from "react";
-import { searchCoins } from "../../utility";
+import { changeTitle, searchCoins } from "../../utility";
 import { useAuth } from "../../context/auth-context";
 
 const SearchPage = () => {
@@ -25,6 +25,8 @@ const SearchPage = () => {
     debounceSearch(inputText);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputText]);
+
+  changeTitle("Search Crypto");
 
   return (
     <main className="m-up-5">
