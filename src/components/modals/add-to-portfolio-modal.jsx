@@ -78,7 +78,7 @@ const AddToPortfolioModal = ({ toggleModal, coinData }) => {
               onChange={(e) => {
                 setInputFields({ ...inputFields, userPrice: e.target.value });
               }}
-              type="text"
+              type="number"
               className="form-input input-focused"
               placeholder="Coin buying price"
               required=""
@@ -91,7 +91,7 @@ const AddToPortfolioModal = ({ toggleModal, coinData }) => {
               onChange={(e) => {
                 setInputFields({ ...inputFields, qty: e.target.value });
               }}
-              type="text"
+              type="number"
               className="form-input input-focused"
               placeholder="Number of units "
               disabled={Boolean(amount)}
@@ -106,7 +106,7 @@ const AddToPortfolioModal = ({ toggleModal, coinData }) => {
                 setInputFields({ ...inputFields, amount: e.target.value });
               }}
               disabled={Boolean(qty)}
-              type="text"
+              type="number"
               className="form-input input-focused"
               placeholder="Total amount"
               required=""

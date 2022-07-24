@@ -123,7 +123,7 @@ const Dashboard = () => {
                   <div className="subtitle m-up-1 semibold">Net Loss</div>
                   <div className="title is-5 is-red semibold">
                     {openOrderTotalValue - openOrderInvestment < 0
-                      ? (openOrderTotalValue - openOrderInvestment).toFixed(2)
+                      ? (openOrderInvestment - openOrderTotalValue).toFixed(2)
                       : "--"}
                   </div>
                 </div>

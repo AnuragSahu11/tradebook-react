@@ -33,7 +33,7 @@ const profitTradesPercentage = (accValue, investment) => {
 
 const lossTradesPercentage = (accValue, investment) => {
   let value = (((accValue - investment) / accValue) * 100).toFixed(2);
-  if (value < 0) return value + "%";
+  if (value < 0) return -value + "%";
   return "--";
 };
 
