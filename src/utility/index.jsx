@@ -1,7 +1,6 @@
-export { searchCoins } from "./api-methods";
+export { searchCoins } from "../server-requests/server-requests";
 export { objectToArray, coinIdList } from "./objectToArray";
 export { applyFilters } from "./apply-filters";
-export { RequiresAuth } from "./requires-auth";
 export { SwitchTheme } from "./darkmode";
 export { changeTitle } from "./change-title";
 export {

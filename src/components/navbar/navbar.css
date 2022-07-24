@@ -12,7 +12,7 @@ nav {
   z-index: 6;
   position: fixed;
   background-color: var(--white);
-  width: 45vw;
+  width: 55vw;
   height: 100vh;
   transform: translateX(-115vw);
 }

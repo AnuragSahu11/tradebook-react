@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useAuth } from "../../context/auth-context";
 import { login } from "../../firebase/firebase-auth";
 import { changeTitle } from "../../utility";
+import { demoCredentials } from "../../utility/constants";
 import "./login.css";
 
 const LoginPage = () => {
@@ -12,11 +14,19 @@ const LoginPage = () => {
   const [inputField, setInputField] = useState({ email: "", password: "" });
   const { setLoading, dispatch } = useAuth();
 
+  const { email, password } = inputField;
+
+  const validateForm = () => {
+    //eslint-disable-next-line
+    const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    return regex.test(email) && password;
+  };
+
   const demoLoginClick = async () => {
-    setInputField({ email: "anurag@gmail.com", password: "123456" });
+    setInputField(demoCredentials);
     setLoading(true);
     try {
-      await login("anurag@gmail.com", "123456", dispatch);
+      await login(demoCredentials, dispatch, setLoading);
       navigate(from, { replace: true });
     } catch {}
     setLoading(false);
@@ -24,10 +34,14 @@ const LoginPage = () => {
 
   const loginClick = async () => {
     setLoading(true);
-    try {
-      await login(inputField.email, inputField.password, dispatch);
-      navigate(from, { replace: true });
-    } catch {}
+    if (validateForm()) {
+      try {
+        await login(inputField, dispatch, setLoading);
+        navigate(from, { replace: true });
+      } catch {}
+    } else {
+      toast.warn("Enter valid credentials");
+    }
     setLoading(false);
   };
 
@@ -50,7 +64,7 @@ const LoginPage = () => {
             className="form-input input-focused"
             placeholder="Enter your Email"
             required=""
-            value={inputField.email}
+            value={email}
           />
           <p className="form-label m-up-2">Password</p>
           <i className="bx bx-key is-light"></i>
@@ -62,14 +76,13 @@ const LoginPage = () => {
             className="form-input input-focused"
             placeholder="Enter your Password"
             required=""
-            value={inputField.password}
+            value={password}
           />
         </div>
         <label htmlFor="" className="m-up-2 form-checkbox">
           <input type="checkbox" className="" />
           Remember me
         </label>
-        <span className="link-secondary m-l-6">Forgot password</span>
         <div className="btn-vertical m-up-3 center-text">
           <button onClick={loginClick} className="btn-primary m-dw-1 btn-small">
             Login
@@ -80,7 +93,9 @@ const LoginPage = () => {
           >
             Demo Login
           </button>
-          <span className="is- link">Create Account</span>
+          <span onClick={() => navigate("/signup")} className="is-2 link">
+            Create Account
+          </span>
         </div>
       </div>
     </section>

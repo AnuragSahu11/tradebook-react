@@ -5,7 +5,6 @@
   height: 100vh;
   left: 0;
   top: 0;
-  position: sticky;
   gap: 25px;
 }
 .trade-current {
@@ -50,8 +49,11 @@
     display: none;
   }
   .filter-menu {
-    position: relative;
     height: min-content;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    background-color: var(--white);
   }
   .filter-menu-hide > :nth-child(n + 2) {
     display: none;

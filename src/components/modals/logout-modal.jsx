@@ -4,6 +4,7 @@ const LogoutModal = ({ showLogout, toggleLogout }) => {
   const { dispatch } = useAuth();
 
   const logoutClickHandler = () => {
+    localStorage.clear("token");
     dispatch({ type: "LOGOUT" });
     toggleLogout();
   };
