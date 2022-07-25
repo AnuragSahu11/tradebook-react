@@ -43,7 +43,7 @@ const Trades = ({ orderData, currentPrice, orderId }) => {
       },
       orderId
     );
-    getUserData(token, dispatch);
+    getUserData(token, dispatch, setLoading);
   };
 
   const deleteTradeClick = async () => {
